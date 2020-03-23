@@ -6,6 +6,14 @@
 
 
 <script>
+
+    import footer from '@/components/footer';
+
+    export default {
+        components: {
+            footer,
+        }
+    }
     
 </script>
 
