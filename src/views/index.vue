@@ -1,7 +1,7 @@
 <template>
     <div>
         Hello world 
-        <footer/>
+        <Footer/>
     </div>
 </template>
 
