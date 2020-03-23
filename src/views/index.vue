@@ -1,17 +1,17 @@
 <template>
     <div>
         Hello world 
+        <footer/>
     </div>
 </template>
 
 
 <script>
-
-    import footer from '@/components/footer';
+    import Footer from '@/components/Footer';
 
     export default {
         components: {
-            footer,
+            Footer,
         }
     }
     
