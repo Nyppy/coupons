@@ -14,9 +14,9 @@
                     <p>Все права защищены.</p>
                 </div>
                 <div class="Payment">
-                    <img src="coupons/src/assets/img/badges with registration/visa.png" alt="">
-                    <img src="mastercard.png" alt="">
-                    <img src="paypal.png" alt="">
+                    <img src="~@/assets/img/badges with registration/visa.png" alt="">
+                    <img src="~@/assets/img/badges with registration/mastercard.png" alt="">
+                    <img src="~@/assets/img/badges with registration/paypal.png" alt="">
                 </div>
                 <div class="Link">
                     <p>При поддержке:</p>
@@ -77,8 +77,8 @@
 
     .Payment {
         width: 350px;
-        margin-left: 100px;
-        margin-right: 90px;
+        margin-left:40px;
+        margin-right: 130px;
     }
 
     .Link {
@@ -93,7 +93,12 @@
     }
 
     .Payment {
-        
+        display: flex;
+        align-items: center;
+    }
+
+    .Payment img {
+        padding-left: 40px;
     }
 
 </style>
