@@ -43,20 +43,29 @@
         <div class="slid1">
           <img src="~@/assets/img/img-footer6.png" alt />
           <div class="text">
-            Лучшие скидки во время
-            <br />вашего путешествия.
+            <p>Лучшие скидки во время
+            <br />вашего путешествия.<p/>
           </div>
         </div>
         <div class="slid2">
           <img src="~@/assets/img/img-footer4.png" alt />
-          <div class="text">Экстримальные ощущения или тихий отдых</div>
+          <div class="text">
+            <p>Экстримальные ощущения
+            <br />или тихий отдых.</p>
+          </div>
         </div>
         <div class="slid3">
           <img src="~@/assets/img/img-footer5.png" alt />
-          <div class="text">Получите максимум эмоций от отдыха с нашими купонами</div>
+          <div class="text">
+            <p>Получите максимум эмоций
+            <br />от отдыха с нашими купонами.</p>
+          </div>
         </div>
       </div>
     </header>
+    <!-- <link rel="stylesheet" href="coupons/slick/slick.css">
+    <link rel="stylesheet" href="coupons/slick/slick-theme.css">
+    <script src="coupons/slick/slick.min.js"> -->
     <Footer />
   </div>
 </template>
@@ -82,13 +91,13 @@ header {
   margin-left: 170px;
 }
 
-.slid2 {
+/* .slid2 {
   display: none;
 }
 
 .slid3 {
   display: none;
-}
+} */
 
 .text {
   padding-top: 40px;
@@ -135,6 +144,7 @@ header {
   line-height: 30px;
   border: 0;
   margin-left: 15px;
+  outline: none;
 }
 
 .form_info {
