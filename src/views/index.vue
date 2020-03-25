@@ -63,9 +63,6 @@
         </div>
       </div>
     </header>
-    <!-- <link rel="stylesheet" href="coupons/slick/slick.css">
-    <link rel="stylesheet" href="coupons/slick/slick-theme.css">
-    <script src="coupons/slick/slick.min.js"> -->
     <Footer />
   </div>
 </template>
@@ -79,6 +76,38 @@ export default {
     Footer
   }
 };
+
+
+import Slick from 'vue-slick';
+ 
+new Vue ({
+ 
+    components: { Slick },
+ 
+    data() {
+        return {
+            slickOptions: {
+                slidesToShow: 3,
+            },
+        };
+    },
+
+    methods: {
+        next() {
+            this.$refs.slick.next();
+        },
+ 
+        prev() {
+            this.$refs.slick.prev();
+        },
+ 
+        reInit() {
+            this.$nextTick(() => {
+                this.$refs.slick.reSlick();
+            });
+        },
+    },
+}); 
 </script>
 
 <style scoped>
