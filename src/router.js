@@ -10,5 +10,9 @@ export default new Router ({
             path: "/",
             component: () => import('./views/index.vue')
         },
+        {
+            path: "/check-payment-method",
+            component: () => import('./views/paymethods.vue')
+        }
     ]
 })

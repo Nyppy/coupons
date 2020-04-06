@@ -5,6 +5,12 @@
 </template>
 
 <style>
+    html {
+      box-sizing: border-box;
+    }
+    *, *::after, *::before {
+      box-sizing: inherit;
+    }
     body {
         margin: 0;
     }
