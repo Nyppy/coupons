@@ -89,7 +89,7 @@ export default {
 .payments__info::after {
     content: '';
     width: 1px;
-    height: 540px;
+    height: 100%;
     background-color: #dadada;
     position: absolute;
     right: 0;
@@ -102,6 +102,7 @@ export default {
 .coupon__size {
     font-weight: 700;
     font-size: 24px;
+    line-height: 30px;
     color: #2e3d4c;
 }
 .coupon__size span {

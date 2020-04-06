@@ -1,104 +1,95 @@
 <template>
-    <div class="Footer">
-            <nav>
-                <a href="">О нас</a>
-                <a href="">Разместить купон</a>
-                <a href="">Партнерская программа</a>
-                <a href="">Политика конфиденциальности</a>
-                <a href="">Условия использования</a>
-            </nav>
-            <div class="Info">
-                <div class="Date">
-                    <p  class="Year">©2020</p>
-                    <p class="Coupons">Coupons.</p>
-                    <p>Все права защищены.</p>
-                </div>
-                <div class="Payment">
-                    <img src="~@/assets/img/badges with registration/visa.png" alt="">
-                    <img src="~@/assets/img/badges with registration/mastercard.png" alt="">
-                    <img src="~@/assets/img/badges with registration/paypal.png" alt="">
-                </div>
-                <div class="Link">
-                    <p>При поддержке:</p>
-                    <a href="https://jscorp.ru/">JS Corp.</a>
-                </div>
-            </div>    
+    <div class="footer">
+            <div class="footer__inner">
+                <nav class="footer__nav">
+                    <router-link class="footer__nav-link" to="">О нас</router-link>
+                    <router-link class="footer__nav-link" to="">Разместить купон</router-link>
+                    <router-link class="footer__nav-link" to="">Партнерская программа</router-link>
+                    <router-link class="footer__nav-link" to="">Политика конфиденциальности</router-link>
+                    <router-link class="footer__nav-link" to="">Условия использования</router-link>
+                </nav>
+                <div class="info">
+                    <div class="date">
+                        &copy;2020 <span>Coupons. </span>Все права защищены.
+                    </div>
+                    <div class="payment">
+                        <img src="~@/assets/img/badges with registration/visa.png" alt="">
+                        <img src="~@/assets/img/badges with registration/mastercard.png" alt="">
+                        <img src="~@/assets/img/badges with registration/paypal.png" alt="">
+                    </div>
+                    <div class="link">
+                        <p>При поддержке: </p>
+                        <a href="https://jscorp.ru/">JS Corp.</a>
+                    </div>
+                </div>  
+            </div>
     </div>
 </template>
 
-
 <script>
-    
+
 </script>
 
 <style scoped>
-    .Footer nav {
-        height: 30px;
-        text-align: center;
+    .footer {
+        padding-bottom: 120px;
         margin-top: 50px;
     }
-
-    .Footer nav a {
-        margin-left: 70px;
+    .footer__nav {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .footer__nav-link {
+        display: inline-block;
         text-decoration: none;
         color: #2e3d4c;
         font-family: Verdana, Geneva, sans-serif;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: bold;
         line-height: 30px;
     }
 
-    .Footer nav a:hover {
+    .footer nav a:hover {
         color: #44cd48;
     }
 
-    .Date {
-        margin-right: 0 auto;
-        width: 350px;
-        display: flex;
-        margin-left: 70px;
-    }
-
-    .Coupons {
-        color: #44cd48;
-    }
-
-    .Date p{
-        margin-right: 5px;
+    .date {
         text-decoration: none;
         font-family: Verdana, Geneva, sans-serif;
-        font-size: 16px;
+        font-size: 18px;
         line-height: 30px;
     }
-    
-    .Info {
-        display: flex;
-    }
-
-    .Payment {
-        width: 350px;
-        margin-left:40px;
-        margin-right: 130px;
-    }
-
-    .Link {
-        display: flex;
-        align-items: center;
-    }
-
-    .Link a {
-        margin-left: 5px;
-        text-decoration: none;
+    .date span {
         color: #44cd48;
     }
+    .info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-    .Payment {
+    .link {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        line-height: 30px;
+    }
+
+    .link a {
+        margin-left: 10px;
+        text-decoration: none;
+        color: #44cd48;
+        font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .payment {
         display: flex;
         align-items: center;
     }
 
-    .Payment img {
-        padding-left: 40px;
+    .payment img + img {
+        margin-left: 40px;
     }
 
 </style>
