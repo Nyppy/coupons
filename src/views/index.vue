@@ -69,16 +69,15 @@
 
 
 <script>
-import Footer from "@/components/Footer";
+import Footer from "@/components/footer";
+import Slick from 'vue-slick';
+import Vue from 'vue'
 
 export default {
   components: {
     Footer
   }
 };
-
-
-import Slick from 'vue-slick';
  
 new Vue ({
  
