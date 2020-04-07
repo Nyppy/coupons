@@ -92,7 +92,6 @@ export default {
 .payments__info-title {
     font-size: 24px;
     line-height: 42px;
-    font-family: 'Gotham Pro', sans-serif;
     font-weight: 700;
     margin-bottom: 10px;
 }
@@ -115,14 +114,12 @@ export default {
     justify-content: center;
 }
 .payments__rightside-text {
-    margin-top: 15px;
-    font-family: 'Gotham Pro', sans-serif;
     font-size: 16px;
     line-height: 24px;
-    font-weight: 500;
+    font-weight: 600;
     color: #2e3d4c;
     text-align: center;
     width: 300px;
-    margin: 0 auto;
+    margin: 15px auto 0;
 }
 </style>

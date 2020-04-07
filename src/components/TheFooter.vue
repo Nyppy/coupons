@@ -43,7 +43,6 @@
         display: inline-block;
         text-decoration: none;
         color: #2e3d4c;
-        font-family: Verdana, Geneva, sans-serif;
         font-size: 16px;
         font-weight: bold;
         line-height: 30px;
@@ -55,7 +54,6 @@
 
     .date {
         text-decoration: none;
-        font-family: Verdana, Geneva, sans-serif;
         font-size: 18px;
         line-height: 30px;
     }
@@ -79,7 +77,6 @@
         margin-left: 10px;
         text-decoration: none;
         color: #44cd48;
-        font-family: Verdana, Geneva, sans-serif;
     }
 
     .payment {

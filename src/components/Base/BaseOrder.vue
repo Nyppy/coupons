@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <div class="payments__coupon">
-      <div class="coupon__size">
-        Скидка 25%
-        <span>за</span> 1$
-      </div>
-      <div class="coupon-name">Суши Япона матрена</div>
+  <div class="payments__coupon">
+    <div class="coupon__size">
+      Скидка 25%
+      <span>за</span> 1$
     </div>
+    <div class="coupon-name">Суши Япона матрена</div>
   </div>
 </template>
 
@@ -19,7 +17,6 @@ export default {
 <style scoped>
 .payments__coupon {
     margin-bottom: 25px;
-    font-family: 'Gotham Pro', sans-serif;
 }
 .coupon__size {
     font-weight: 700;
