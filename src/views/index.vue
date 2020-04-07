@@ -69,7 +69,7 @@
 
 
 <script>
-import Footer from "@/components/footer";
+import Footer from "@/components/TheFooter";
 /*import Slick from 'vue-slick';*/
 /*import Vue from 'vue'*/
 

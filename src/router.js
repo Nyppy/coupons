@@ -13,6 +13,10 @@ export default new Router ({
         {
             path: "/check-payment-method",
             component: () => import('./views/paymethods.vue')
+        },
+        {
+            path: "/credit-card-form",
+            component: () => import('./views/AppCardForm.vue')
         }
     ]
 })

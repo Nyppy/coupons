@@ -32,13 +32,12 @@
 
 <style scoped>
     .footer {
-        padding-bottom: 120px;
+        padding-bottom: 60px;
         margin-top: 50px;
     }
     .footer__nav {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 20px;
     }
     .footer__nav-link {
         display: inline-block;

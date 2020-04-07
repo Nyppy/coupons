@@ -6,25 +6,18 @@
                 <div class="payments__inner">
                     <div class="payments__info">
                         <div class="payments__info-inner">
-                            <div class="payments__coupon">
-                                <div class="coupon__size">
-                                    Скидка 25% <span>за</span> 1$
-                                </div>
-                                <div class="coupon-name">
-                                    Суши Япона матрена
-                                </div>
-                            </div>
+                            <coupon-elem></coupon-elem>
                             <div class="payments__info-title">
                                 Выберите способ оплаты
                             </div>
                             <div class="payments__info-list">
-                                <router-link class="payments__info-link" to="'/pay-width-visa'">
+                                <router-link class="payments__info-link" to="/credit-card-form">
                                     <img class="payments__info-img" src="../assets/img/payments/visa.png" alt="visa">
                                 </router-link>
-                                <router-link class="payments__info-link" to="'/pay-width-mastercard'">
+                                <router-link class="payments__info-link" to="/credit-card-form">
                                     <img class="payments__info-img" src="../assets/img/payments/mastercard.png" alt="mc">
                                 </router-link>
-                                <router-link class="payments__info-link" to="'/pay-width-visa'">
+                                <router-link class="payments__info-link" to="/credit-card-form">
                                     <img class="payments__info-img" src="../assets/img/payments/paypal.png" alt="paypal">
                                 </router-link>
                             </div>
@@ -46,19 +39,20 @@
 </template>
 
 <script>
-import FooterElem from "../components/footer.vue"
-import HeaderElem from "../components/header.vue"
+import FooterElem from "../components/TheFooter"
+import HeaderElem from "../components/TheHeader"
+import CouponElem from "../components/Base/BaseOrder"
 
 
 export default {
     data() {
         return {
-            counter: 5
         }
     },
     components: {
         HeaderElem,
-        FooterElem
+        FooterElem,
+        CouponElem
     }
 }
 </script>
@@ -77,13 +71,13 @@ export default {
 }
 .payments__inner {
     display: flex;
-    text-align: left;
     min-height: 540px;
 }
 .payments__info {
     flex-basis: 50%;
     position: relative;
     display: flex;
+    text-align: left;
     align-items: center;
 }
 .payments__info::after {
@@ -94,25 +88,6 @@ export default {
     position: absolute;
     right: 0;
     top: 0;
-}
-.payments__coupon {
-    margin-bottom: 25px;
-    font-family: 'Gotham Pro', sans-serif;
-}
-.coupon__size {
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 30px;
-    color: #2e3d4c;
-}
-.coupon__size span {
-    font-size: 18px;
-    color: #cacaca;
-}
-.coupon-name {
-    font-weight: 700;
-    font-size: 18px;
-    color: #46d149;
 }
 .payments__info-title {
     font-size: 24px;
