@@ -7,26 +7,58 @@
                     <div class="payment-form">
                         <div class="payment-form__inner">
                             <coupon-elem></coupon-elem>
-                            <form action="" class="payment-form__form">
+                            <form action="#" class="payment-form__form">
                                 <div class="payment-form__title">
                                     Оплата
                                 </div>
                                 <div class="payment-form__cardnumber">
-                                    <input class="payment-form__cardnumber-input" type="tel" placeholder="Номер карты">
+                                    <input 
+                                        class="payment-form__cardnumber-input" 
+                                        type="text" 
+                                        placeholder="Номер карты"
+                                        @input="$v.cardNumber.$touch()"
+                                        v-model.number.trim="cardNumber"
+                                        @keypress="onlyNumber($event); addMaxLength($event, 18)">
+                                        
                                 </div>
                                 <div class="payment-form__cardname">
-                                    <input class="payment-form__cardname-input" type="text" placeholder="Имя держателя карты">
+                                    <input 
+                                        class="payment-form__cardname-input" 
+                                        type="text" 
+                                        placeholder="Имя держателя карты"
+                                        @input="$v.cardName.$touch()"
+                                        v-model="cardName"
+                                        @keypress="noNumber($event)">
                                 </div>
                                 <div class="payment-form__cardinfo">
                                     <div class="payment-form__cardinfo-date">
-                                        <input class="payment-form__cardinfo-dateinput" type="tel" placeholder="Срок карты">
+                                        <input 
+                                            class="payment-form__cardinfo-dateinput" 
+                                            type="text" 
+                                            v-mask="'99/99'" 
+                                            placeholder="Срок карты"
+                                            @input="$v.cardDate.$touch()"
+                                            v-model="cardDate">
                                     </div>
+                                    
                                     <div class="payment-form__cardinfo-cvv">
-                                        <input class="payment-form__cardinfo-cvvinput" type="password" placeholder="CVV">
+                                        <input 
+                                            class="payment-form__cardinfo-cvvinput" 
+                                            type="password" 
+                                            placeholder="CVV"
+                                            @input="$v.cardCVV.$touch()"
+                                            v-model="cardCVV"
+                                            @keypress="onlyNumber($event); addMaxLength($event, 3)">
                                     </div>
+                                    
                                 </div>
                                 <div class="payment-form__email">
-                                    <input class="payment-form__email-input" type="email" placeholder="Почта для отправки купона">
+                                    <input 
+                                        class="payment-form__email-input" 
+                                        type="email" 
+                                        placeholder="Почта для отправки купона"
+                                        @input="$v.userEmail.$touch()"
+                                        v-model="userEmail">
                                 </div>
                                 <div class="payment-form__agree">
                                     <input class="payment-form__agree-checkbox" type="checkbox" id="agree-checkbox"><label class="agree-checkbox__label" for="agree-checkbox">Согласен с условиями использования и <span>политикой конфиденциальности</span></label>
@@ -56,17 +88,98 @@
 import FooterElem from "../components/TheFooter"
 import HeaderElem from "../components/TheHeader"
 import CouponElem from "../components/Base/BaseOrder"
+import { required, email, minLength } from 'vuelidate/lib/validators'
 
 
 export default {
     data() {
         return {
+            cardNumber: '',
+            cardName: '',
+            cardDate: '',
+            cardCVV: '',
+            userEmail: '',
+
         }
     },
     components: {
         HeaderElem,
         FooterElem,
         CouponElem
+    },
+    validations: {
+        cardNumber: {
+            required,
+            minLength: minLength(16),
+            correctNumber: (value) => {
+                if (value === '') {
+                    return false
+                }
+                let arr = [];
+                let card_number = value.toString();
+                for(var i = 0; i < card_number.length; i++) {
+                    if(i % 2 === 0) {
+                        var m = parseInt(card_number[i]) * 2;
+                        if(m > 9) { 
+                            arr.push(m - 9);
+                        } else {
+                            arr.push(m);
+                        } 
+                    } else {
+                        let n = parseInt(card_number[i]);
+                        arr.push(n)
+                    }
+                } 
+                var summ = arr.reduce(function(a, b) { return a + b; });
+                return Boolean(!(summ % 10));
+            }       
+        },
+        cardName: {
+            required
+        },
+        userEmail: {
+            required,
+            email
+        },
+        cardDate: {
+            required,
+            correctDate: (value) => {
+                let currDate = new Date();
+                let currMonth = currDate.getMonth()+1;
+                let currYear = +currDate.getFullYear().toString().slice(2);
+                let cardMonth = +value.toString().slice(0,2);
+                let cardYear = +value.toString().slice(3);
+                if(isNaN(+value.split('/').join('')) || cardYear < currYear || (cardYear === currYear && cardMonth < currMonth)) {
+                    return false
+                }
+                return true
+            }
+        },
+        cardCVV: {
+            required
+        }
+    },
+    methods: {
+        noNumber(evt) {
+            var regex = new RegExp("^[a-zA-Z ]+$");
+            var key = String.fromCharCode(!evt.charCode ? evt.which : evt.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        },
+        onlyNumber(val) {
+            if (val.keyCode < 48 || val.keyCode > 57) {
+                event.preventDefault();
+                return false;
+            }
+        },
+        addMaxLength(event, val) {
+            if(event.target.value.toString().length == val) {
+                event.preventDefault();
+                return false;
+            }
+        }
     }
 }
 </script>
@@ -84,6 +197,7 @@ export default {
     display: flex;
     min-height: 540px;
 }
+/* --payment form-- */
 .payment-form {
     flex-basis: 50%;
     position: relative;
@@ -209,10 +323,11 @@ export default {
     width: 100%;
     border: 0;
     padding: 20px 10px 20px 55px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
     outline: none;
     &::placeholder {
+        font-size: 16px;
         font-weight: 400;
         font-family: 'Montserrat', sans-serif;
         color: #696969;
@@ -262,6 +377,14 @@ export default {
         display: contents;
     }
 }
+
+/* --payment form end-- */
+
+/* -- vuelidate classes for payment form --*/
+
+
+/* -- vuelidate classes end -- */
+
 .payments__rightside {
     flex-basis: 50%;
     display: flex;
