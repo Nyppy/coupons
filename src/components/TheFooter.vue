@@ -30,62 +30,125 @@
 
 </script>
 
-<style scoped>
-    .footer {
-        padding-bottom: 40px;
-        margin-top: 50px;
+<style lang="scss" scoped>
+.footer {
+    padding-bottom: 40px;
+    margin-top: 50px;
+}
+.footer__nav {
+    display: flex;
+    justify-content: space-between;
+}
+.footer__nav-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #2e3d4c;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.footer nav a:hover {
+    color: #44cd48;
+}
+
+.date {
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 30px;
+}
+.date span {
+    color: #44cd48;
+}
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.link a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #44cd48;
+}
+
+.payment {
+    display: flex;
+    align-items: center;
+}
+
+.payment img + img {
+    margin-left: 40px;
+}
+/* -- media -- */
+@media (max-width: 1040px) {
+    .footer__inner {
+        display: flex;
+        justify-content: space-around;
     }
     .footer__nav {
-        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .info {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+    }
+    .link p {
+        margin: 0;
+    }
+    .payment {
+        margin: 10px 0;
+    }
+}
+@media (max-width: 700px) {
+    .footer__inner {
         justify-content: space-between;
     }
     .footer__nav-link {
-        display: inline-block;
-        text-decoration: none;
-        color: #2e3d4c;
-        font-size: 16px;
-        font-weight: bold;
-        line-height: 30px;
+        font-size: 14px;
+        line-height: 24px;
     }
-
-    .footer nav a:hover {
-        color: #44cd48;
+    .link, .date {
+        font-size: 14px;
+        line-height: 24px;
     }
-
     .date {
-        text-decoration: none;
-        font-size: 18px;
-        line-height: 30px;
+        order: 1;
     }
-    .date span {
-        color: #44cd48;
-    }
-    .info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .link {
-        display: flex;
-        align-items: center;
-        font-size: 18px;
-        line-height: 30px;
-    }
-
-    .link a {
-        margin-left: 10px;
-        text-decoration: none;
-        color: #44cd48;
-    }
-
     .payment {
-        display: flex;
-        align-items: center;
+        margin-top: 0;
+        margin-bottom: 5px;
+        img + img {
+            margin-left: 15px;
+        }
     }
-
-    .payment img + img {
-        margin-left: 40px;
+    .footer {
+        padding-bottom: 20px;
+        margin-top: 20px;
     }
-
+    @media (max-width: 600px) {
+        .footer__inner {
+            display: block;
+        }
+        .footer__nav {
+            align-items: center;
+        }
+        .info {
+            align-items: center;
+        }
+        .payment {
+            margin-top: 5px;
+        }
+    }
+}
 </style>

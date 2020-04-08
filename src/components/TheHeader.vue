@@ -21,4 +21,13 @@
     width: 280px;
     height: 65px;
 }
+@media (max-width:600px) {
+    .header {
+        padding: 10px 0;
+    }
+    .logo {
+        width: 200px;
+        height: 55px;
+    }
+}
 </style>
