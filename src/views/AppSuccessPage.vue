@@ -21,9 +21,9 @@
                     </div>
                     <div class="success-page__rightside">
                         <div class="success-page__rightside-inner">
-                            <img class="success-page__rightside-img" src="../assets/img/img-footer2.png" alt="tea">
+                            <img class="success-page__rightside-img" src="../assets/img/img-footer3.png" alt="Success">
                             <div class="success-page__rightside-text">
-                                Выберите привычный для вас способ оплаты
+                                С нетерпением будем ждать вашего возвращения!
                             </div>
                         </div>
                     </div>
