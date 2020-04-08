@@ -17,6 +17,11 @@ export default new Router ({
         {
             path: "/credit-card-form",
             component: () => import('./views/AppCardForm.vue')
+        },
+        {
+            path: "/successful-payment",
+            name: 'successPage',
+            component: () => import('./views/AppSuccessPage.vue')
         }
     ]
 })

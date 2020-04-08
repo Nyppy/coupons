@@ -32,7 +32,7 @@
 
 <style scoped>
     .footer {
-        padding-bottom: 60px;
+        padding-bottom: 40px;
         margin-top: 50px;
     }
     .footer__nav {

@@ -15,13 +15,11 @@ export default {
 </script>
 
 <style scoped>
-.payments__coupon {
-    margin-bottom: 25px;
-}
+
 .coupon__size {
     font-weight: 700;
     font-size: 24px;
-    line-height: 30px;
+    line-height: 26px;
     color: #2e3d4c;
 }
 .coupon__size span {
