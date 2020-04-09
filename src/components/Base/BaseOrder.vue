@@ -31,4 +31,15 @@ export default {
     font-size: 18px;
     color: #46d149;
 }
+@media (max-width: 900px) {
+  .coupon__size {
+      font-size: 20px;
+  }
+  .coupon__size span {
+      font-size: 16px;
+  }
+  .coupon-name {
+      font-size: 16px;
+  }
+}
 </style>

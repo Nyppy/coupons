@@ -57,7 +57,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .payments {
     width: 100%;
 }
@@ -98,7 +98,6 @@ export default {
 .payments__info-link {
     display: inline-block;
     filter: grayscale(100%);
-    filter: gray;
     transition: all .2s;
 }
 .payments__info-link:hover {
@@ -122,4 +121,64 @@ export default {
     width: 300px;
     margin: 15px auto 0;
 }
+@media (max-width: 1040px) {
+    .main {
+        padding: 10px 0;
+    }
+    .payments__inner {
+        min-height: 440px;
+    }
+}
+@media (max-width: 900px) {
+    .payments__info-inner {
+        padding-right: 15px;
+    }
+    .payments__info-list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .payments__info-img {
+        width: 80%;
+        height: auto;
+    }
+    .payments__info-link + .payments__info-link {
+        margin-left: 0;
+    }
+    .payments__info-title {
+        font-size: 20px;
+        line-height: 36px;
+        margin-top: 5px;
+    }
+    .payments__rightside-img {
+        width: 80%;
+        height: auto;
+    }
+}
+@media (max-width: 700px) {
+    .payments__inner {
+        min-height: 380px;
+    }
+}
+@media (max-width: 630px) {
+    .payments__inner {
+        display: block;
+        min-height: auto;
+    }
+    .payments__info {
+        text-align: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        &::after {
+            display: none;
+        }
+    }
+    .payments__info-inner {
+        padding-right: 0;
+    }
+    .payments__info-title {
+        margin-top: 15px;
+    }
+}
+
 </style>

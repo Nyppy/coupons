@@ -89,6 +89,9 @@
 }
 /* -- media -- */
 @media (max-width: 1040px) {
+    .footer {
+        margin-top: 25px;
+    }
     .footer__inner {
         display: flex;
         justify-content: space-around;
@@ -147,7 +150,7 @@
             align-items: center;
         }
         .payment {
-            margin-top: 5px;
+            margin: 10px 0;
         }
     }
 }
