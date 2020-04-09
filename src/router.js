@@ -22,6 +22,10 @@ export default new Router ({
             path: "/successful-payment",
             name: 'successPage',
             component: () => import('./views/AppSuccessPage.vue')
+        },
+        {
+            path: "/coupons-catalogue",
+            component: () => import('./views/AppCataloguePage.vue')
         }
     ]
 })

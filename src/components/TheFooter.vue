@@ -145,6 +145,7 @@
         }
         .footer__nav {
             align-items: center;
+            margin-bottom: 10px;
         }
         .info {
             align-items: center;

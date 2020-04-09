@@ -70,6 +70,7 @@ export default {
     display: flex;
     text-align: left;
     align-items: center;
+    padding-right: 15px;
 }
 .success-page__info::after {
     content: '';
@@ -127,6 +128,50 @@ export default {
     transition: all .8s;
     &:hover {
         background: linear-gradient( -13deg, rgb(85,242,89) 0%, rgb(64,196,67) 100%);
+    }
+}
+@media (max-width: 900px) {
+    .success-page__info {
+        flex-basis: 70%;
+    }
+    .success-page__info-message,
+    .success-page__info-subtitle {
+        font-size: 20px;
+    }
+    .success-page__info-title {
+        font-size: 32px;
+    }
+    .success-page__rightside-img {
+        width: 80%;
+        height: auto;
+    }
+    .success-page__inner {
+        min-height: 440px;
+    }
+}
+@media (max-width: 720px) {
+    .success-page__info-title {
+        font-size: 28px;
+    }
+}
+@media (max-width: 670px) {
+    .success-page__inner {
+        display: block;
+        min-height: auto;
+    }
+    .success-page__info {
+        text-align: center;
+        justify-content: center;
+        padding-right: 0;
+        margin-bottom: 20px;
+        &::after {
+            display: none;
+        }
+    }
+}
+@media (max-width: 600px) {
+    .success-page__info-subtitle {
+        margin-bottom: 10px;
     }
 }
 </style>

@@ -18,7 +18,7 @@
                                     <input 
                                         class="payment-form__cardnumber-input" 
                                         type="text" 
-                                        placeholder="Номер карты"
+                                        placeholder="Номер карты" 
                                         v-model.lazy="$v.cardNumber.$model"
                                         @keypress="onlyNumber($event); addMaxLength($event, 18)">
                                         
@@ -66,7 +66,8 @@
                                         placeholder="Почта для отправки купона"
                                         v-model.lazy="$v.userEmail.$model">
                                 </div>
-                                <div class="payment-form__agree">
+
+                                <div class="payment-form__agree" :class="{ 'required-form': !$v.agreeChecker.$invalid }">
                                     <input 
                                         class="payment-form__agree-checkbox" 
                                         type="checkbox" 
@@ -244,6 +245,7 @@ export default {
     position: relative;
     display: flex;
     text-align: left;
+    padding-right: 20px;
     &::after {
         content: '';
         width: 1px;
@@ -480,4 +482,157 @@ export default {
       background: linear-gradient( -13deg, rgb(85,242,89) 0%, rgb(64,196,67) 100%);
   }
 }
+@media (max-width: 900px) {
+    .payment-form__title {
+        font-size: 20px;
+    }
+    .payments__rightside-img {
+        width: 80%;
+        height: auto;
+    }
+    .payment-form {
+        flex-basis: 70%;
+    }
+    .payments__rightside {
+        flex-basis: 30%;
+    }
+}
+@media (max-width: 800px) {
+    .payment-form__cardnumber-input, 
+    .payment-form__cardname-input,
+    .payment-form__cardinfo-dateinput,
+    .payment-form__cardinfo-cvvinput,
+    .payment-form__email-input {
+        font-size: 16px;
+        &::placeholder {
+            font-size: 14px;
+        }
+    }
+    .agree-checkbox__label {
+        font-size: 14px;
+    }
+    .payment-form__cardnumber {
+        &::after {
+            left: 160px;
+        }
+    }
+    .payment-form__cardname {
+        &::after {
+            left: 225px;
+        }
+    }
+    .payment-form__cardinfo-date {
+        &::after {
+            left: 145px;
+        }
+    }
+    .payment-form__email {
+        &::after {
+            left: 263px;
+        }
+    }
+    .payment-form__agree {
+        &::after {
+            left: 305px;
+        }
+    }
+}
+@media (max-width: 725px) {
+    .card-form__inner {
+        display: block;
+        min-height: auto;
+    }
+    .payment-form {
+        text-align: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        padding-right: 0;
+        &::after {
+            display: none;
+        }
+    }
+    .payment-form__agree {
+        &::after {
+            left: unset;
+            right: 23%;
+        }
+    }
+}
+@media (max-width: 520px) {
+    .agree-checkbox__label {
+        text-align: left;
+    }
+    .payment-form__agree::after {
+        left: 222px;
+        right: unset;
+    }
+}
+@media (max-width: 478px) {
+    .payment-form__agree {
+        &::after {
+            left: 303px;
+        }
+    }
+    .payment-form__cardnumber-input, 
+    .payment-form__cardname-input,
+    .payment-form__cardinfo-dateinput,
+    .payment-form__cardinfo-cvvinput,
+    .payment-form__email-input {
+        padding-left: 45px;
+    }
+    .agree-checkbox__label {
+        &::before {
+            margin-right: 10px;
+        }
+    }
+}
+@media (max-width: 390px) {
+    .payment-form__agree {
+        &::after {
+            left: 310px;
+        }
+    }
+    .payment-form__cardinfo-date {
+        width: 50%;
+    }
+    .payment-form__cardnumber {
+        &::after {
+            left: 150px;
+        }
+    }
+    .payment-form__cardname {
+        &::after {
+            left: 215px;
+        }
+    }
+    .payment-form__cardinfo-date {
+        &::after {
+            left: 135px;
+        }
+    }
+    .payment-form__email {
+        &::after {
+            left: 253px;
+        }
+    }
+    .payment-form__cardinfo-cvv {
+        &::after {
+            left: 83px;
+        }
+    }
+    .payment-form__agree {
+        &::after {
+            left: 305px;
+        }
+    }
+}
+@media (max-width: 376px) {
+    .payment-form__agree {
+        &::after {
+            left: 224px;
+            top: 17px;
+        }
+    }
+}
+
 </style>
