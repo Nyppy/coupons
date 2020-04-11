@@ -17,19 +17,18 @@
 <style scoped>
 .header {
     text-align: left;
-    padding: 20px 0;
+    padding: 15px 0;
 }
 .logo {
-    width: 280px;
-    height: 65px;
+    width: 240px;
+    height: auto;
 }
 @media (max-width:600px) {
     .header {
         padding: 10px 0;
     }
     .logo {
-        width: 200px;
-        height: 55px;
+        width: 180px;
     }
 }
 </style>
