@@ -1,36 +1,46 @@
 <template>
     <div class="success-page">
-        <div class="container">
-            <header-elem></header-elem>
-            <main class="main">
-                <div class="success-page__inner">
-                    <div class="success-page__info">
-                        <div class="success-page__info-inner">
-                            <div class="success-page__info-title">Спасибо за покупку!</div>
-                            <div class="success-page__info-subtitle">Ваш купон</div>
-                            <coupon-elem></coupon-elem>
-                            <div class="success-page__info-message">был отправлен на указанную почту!</div>
-                            <div class="success-page__info-button">
-                                <router-link 
-                                    class="success-page__button" 
-                                    to="/coupons-catalogue">
-                                    Выбрать ещё купоны
-                                </router-link>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="success-page__rightside">
-                        <div class="success-page__rightside-inner">
-                            <img class="success-page__rightside-img" src="../assets/img/img-footer3.png" alt="Success">
-                            <div class="success-page__rightside-text">
-                                С нетерпением будем ждать вашего возвращения!
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-            <footer-elem></footer-elem>
+        <div class="header__wrapper">
+            <div class="container">
+                <header-elem></header-elem>
+            </div>
         </div>
+        <div class="success-page__wrapper">
+            <div class="container">
+                <main class="main">
+                    <div class="success-page__inner">
+                        <div class="success-page__info">
+                            <div class="success-page__info-inner">
+                                <div class="success-page__info-title">Спасибо за покупку!</div>
+                                <div class="success-page__info-subtitle">Ваш купон</div>
+                                <coupon-elem></coupon-elem>
+                                <div class="success-page__info-message">был отправлен на указанную почту!</div>
+                                <div class="success-page__info-button">
+                                    <router-link 
+                                        class="success-page__button" 
+                                        to="/coupons-catalogue">
+                                        Выбрать ещё купоны
+                                    </router-link>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="success-page__rightside">
+                            <div class="success-page__rightside-inner">
+                                <img class="success-page__rightside-img" src="../assets/img/img-footer3.png" alt="Success">
+                                <div class="success-page__rightside-text">
+                                    С нетерпением будем ждать вашего возвращения!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <div class="footer__wrapper">
+            <div class="container">
+                <footer-elem></footer-elem>
+            </div>
+        </div>  
     </div>
 </template>
 
@@ -51,11 +61,23 @@ export default {
 <style lang="scss" scoped>
 .success-page {
     width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .container {
     max-width: 1230px;
     padding: 0 15px;
     margin: 0 auto;
+}
+.header__wrapper {
+    flex: 0 0 auto;
+}
+.success-page__wrapper {
+    flex: 1 0 auto;
+}
+.footer__wrapper {
+    flex: 0 0 auto;
 }
 .main {
     padding: 40px 0;

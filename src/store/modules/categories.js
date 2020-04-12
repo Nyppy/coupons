@@ -27,7 +27,7 @@ export default {
         }
     },
     state: {
-        categories: null,
+        categories: [{}],
         lockingPool: false
     },
     getters: {

@@ -1,39 +1,49 @@
 <template>
     <div class="payments"> 
-        <div class="container">
-            <header-elem></header-elem>
-            <main class="main">
-                <div class="payments__inner">
-                    <div class="payments__info">
-                        <div class="payments__info-inner">
-                            <coupon-elem></coupon-elem>
-                            <div class="payments__info-title">
-                                Выберите способ оплаты
+        <div class="header__wrapper">
+            <div class="container">
+                <header-elem></header-elem>
+            </div>
+        </div>
+        <div class="payments__wrapper">
+            <div class="container">
+                <main class="main"> 
+                    <div class="payments__inner">
+                        <div class="payments__info">
+                            <div class="payments__info-inner">
+                                <coupon-elem></coupon-elem>
+                                <div class="payments__info-title">
+                                    Выберите способ оплаты
+                                </div>
+                                <div class="payments__info-list">
+                                    <router-link class="payments__info-link" to="/credit-card-form">
+                                        <img class="payments__info-img" src="../assets/img/payments/visa.png" alt="visa">
+                                    </router-link>
+                                    <router-link class="payments__info-link" to="/credit-card-form">
+                                        <img class="payments__info-img" src="../assets/img/payments/mastercard.png" alt="mc">
+                                    </router-link>
+                                    <router-link class="payments__info-link" to="/credit-card-form">
+                                        <img class="payments__info-img" src="../assets/img/payments/paypal.png" alt="paypal">
+                                    </router-link>
+                                </div>
                             </div>
-                            <div class="payments__info-list">
-                                <router-link class="payments__info-link" to="/credit-card-form">
-                                    <img class="payments__info-img" src="../assets/img/payments/visa.png" alt="visa">
-                                </router-link>
-                                <router-link class="payments__info-link" to="/credit-card-form">
-                                    <img class="payments__info-img" src="../assets/img/payments/mastercard.png" alt="mc">
-                                </router-link>
-                                <router-link class="payments__info-link" to="/credit-card-form">
-                                    <img class="payments__info-img" src="../assets/img/payments/paypal.png" alt="paypal">
-                                </router-link>
+                        </div>
+                        <div class="payments__rightside">
+                            <div class="payments__rightside-inner">
+                                <img class="payments__rightside-img" src="../assets/img/img-footer2.png" alt="tea">
+                                <div class="payments__rightside-text">
+                                    Выберите привычный для вас способ оплаты
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="payments__rightside">
-                        <div class="payments__rightside-inner">
-                            <img class="payments__rightside-img" src="../assets/img/img-footer2.png" alt="tea">
-                            <div class="payments__rightside-text">
-                                Выберите привычный для вас способ оплаты
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-            <footer-elem></footer-elem>
+                </main>                    
+            </div>
+        </div>
+        <div class="footer__wrapper">
+            <div class="container">
+                <footer-elem></footer-elem>
+            </div>
         </div>
     </div>
 </template>
@@ -60,7 +70,20 @@ export default {
 <style lang="scss" scoped>
 .payments {
     width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
+.header__wrapper {
+    flex: 0 0 auto;
+}
+.payments__wrapper {
+    flex: 1 0 auto;
+}
+.footer__wrapper {
+    flex: 0 0 auto
+}
+  
 .container {
     max-width: 1230px;
     padding: 0 15px;

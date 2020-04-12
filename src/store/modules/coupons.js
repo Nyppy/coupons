@@ -2,17 +2,16 @@ import axios from 'axios'
 
 export default {
     actions: {
-        async allCoupons({commit}, arr) {
+        async allCoupons({commit}, {category}) {
             try {
                 commit('lockUiCoup');
+                commit('changeCurrentCategory', category); 
                 const {
                     data: {
                         data: List
                     }
-                } = await axios.get('http://127.0.0.1:8000/coupons/' + arr[0] + '/');
+                } = await axios.get('http://127.0.0.1:8000/coupons/' + category.id + '/');
                 commit('updateCoupons', List);
-                commit('changeCurrentCategoryId', arr[0]);                
-                commit('changeCurrentCategoryName', arr[1]);  
                 commit('unlockUiCoup');
             } catch (e) {
                 commit('lockUiCoup');
@@ -24,11 +23,8 @@ export default {
     mutations: {
         lockUiCoup: state => state.lockingPool = true,
         unlockUiCoup: state => state.lockingPool = false,
-        changeCurrentCategoryId(state, id) {
-            state.currentCategoryId = id
-        },
-        changeCurrentCategoryName(state, name) {
-            state.currentCategoryName = name
+        changeCurrentCategory(state, category) {
+            state.currentCategory = category
         },
         updateCoupons(state, coupons) {
             state.couponsList = coupons
@@ -37,8 +33,7 @@ export default {
     state: {
         couponsList: null,
         lockingPool: false,
-        currentCategoryId: null,
-        currentCategoryName: null
+        currentCategory: {}
     },
     getters: {
         getCouponsList(state) {
@@ -47,11 +42,8 @@ export default {
         getLockStateCoupons(state) {
             return state.lockingPool
         },
-        getCurrentCategoryId(state) {
-            return state.currentCategoryId
-        },
-        getCurrentCategoryName(state) {
-            return state.currentCategoryName
+        getCurrentCategory(state) {
+            return state.currentCategory
         }
         
     }

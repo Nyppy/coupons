@@ -1,103 +1,113 @@
 <template>
     <div class="card-form">
-        <div class="container">
-            <header-elem></header-elem>
-            <main class="main">
-                <div class="card-form__inner">          
-                    <div class="payment-form">
-                        <div class="payment-form__inner">
-                            <coupon-elem></coupon-elem>
-                            <form action="#" class="payment-form__form" @submit.prevent="submit">
-                                <div class="payment-form__title">
-                                    Оплата
-                                </div>
-                                <div class="payment-form__cardnumber" 
-                                    :class="{ 'payment-form__error-input': $v.cardNumber.$error,
-                                    'required-form' : $v.cardNumber.required}"
-                                >
-                                    <input 
-                                        class="payment-form__cardnumber-input" 
-                                        type="text" 
-                                        placeholder="Номер карты" 
-                                        v-model.lazy="$v.cardNumber.$model"
-                                        @keypress="onlyNumber($event); addMaxLength($event, 18)">
-                                        
-                                </div>
-                                <div class="payment-form__cardname" 
-                                    :class="{ 'payment-form__error-input': $v.cardName.$error,
-                                    'required-form' : $v.cardName.required }">
-                                    <input 
-                                        class="payment-form__cardname-input" 
-                                        type="text" 
-                                        placeholder="Имя держателя карты"
-                                        v-model.lazy="$v.cardName.$model"
-                                        @keypress="noNumber($event)">
-                                </div>
-                                <div class="payment-form__cardinfo">
-                                    <div class="payment-form__cardinfo-date" 
-                                        :class="{ 'payment-form__error-input': $v.cardDate.$error,
-                                        'required-form' : $v.cardDate.required }">
-                                        <input 
-                                            class="payment-form__cardinfo-dateinput" 
-                                            type="text" 
-                                            v-mask="'99/99'" 
-                                            placeholder="Срок карты"
-                                            v-model.lazy="$v.cardDate.$model">
-                                    </div>
-                                    
-                                    <div class="payment-form__cardinfo-cvv" 
-                                        :class="{ 'payment-form__error-input': $v.cardCVV.$error,
-                                        'required-form' : $v.cardCVV.required }">
-                                        <input 
-                                            class="payment-form__cardinfo-cvvinput" 
-                                            type="password" 
-                                            placeholder="CVV"
-                                            v-model.lazy="$v.cardCVV.$model"
-                                            @keypress="onlyNumber($event); addMaxLength($event, 3)">
-                                    </div>
-                                    
-                                </div>
-                                <div class="payment-form__email" 
-                                    :class="{ 'payment-form__error-input': $v.userEmail.$error,
-                                    'required-form' : $v.userEmail.required }">
-                                    <input 
-                                        class="payment-form__email-input" 
-                                        type="email" 
-                                        placeholder="Почта для отправки купона"
-                                        v-model.lazy="$v.userEmail.$model">
-                                </div>
+            <div class="header__wrapper">
+                <div class="container">
+                    <header-elem></header-elem>
+                </div>
+            </div>
+            <div class="card-form__wrapper">
+                <div class="container">
+                    <main class="main">
+                        <div class="card-form__inner">          
+                            <div class="payment-form">
+                                <div class="payment-form__inner">
+                                    <coupon-elem></coupon-elem>
+                                    <form action="#" class="payment-form__form" @submit.prevent="submit">
+                                        <div class="payment-form__title">
+                                            Оплата
+                                        </div>
+                                        <div class="payment-form__cardnumber" 
+                                            :class="{ 'payment-form__error-input': $v.cardNumber.$error,
+                                            'required-form' : $v.cardNumber.required}"
+                                        >
+                                            <input 
+                                                class="payment-form__cardnumber-input" 
+                                                type="text" 
+                                                placeholder="Номер карты" 
+                                                v-model.lazy="$v.cardNumber.$model"
+                                                @keypress="onlyNumber($event); addMaxLength($event, 18)">
+                                                
+                                        </div>
+                                        <div class="payment-form__cardname" 
+                                            :class="{ 'payment-form__error-input': $v.cardName.$error,
+                                            'required-form' : $v.cardName.required }">
+                                            <input 
+                                                class="payment-form__cardname-input" 
+                                                type="text" 
+                                                placeholder="Имя держателя карты"
+                                                v-model.lazy="$v.cardName.$model"
+                                                @keypress="noNumber($event)">
+                                        </div>
+                                        <div class="payment-form__cardinfo">
+                                            <div class="payment-form__cardinfo-date" 
+                                                :class="{ 'payment-form__error-input': $v.cardDate.$error,
+                                                'required-form' : $v.cardDate.required }">
+                                                <input 
+                                                    class="payment-form__cardinfo-dateinput" 
+                                                    type="text" 
+                                                    v-mask="'99/99'" 
+                                                    placeholder="Срок карты"
+                                                    v-model.lazy="$v.cardDate.$model">
+                                            </div>
+                                            
+                                            <div class="payment-form__cardinfo-cvv" 
+                                                :class="{ 'payment-form__error-input': $v.cardCVV.$error,
+                                                'required-form' : $v.cardCVV.required }">
+                                                <input 
+                                                    class="payment-form__cardinfo-cvvinput" 
+                                                    type="password" 
+                                                    placeholder="CVV"
+                                                    v-model.lazy="$v.cardCVV.$model"
+                                                    @keypress="onlyNumber($event); addMaxLength($event, 3)">
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="payment-form__email" 
+                                            :class="{ 'payment-form__error-input': $v.userEmail.$error,
+                                            'required-form' : $v.userEmail.required }">
+                                            <input 
+                                                class="payment-form__email-input" 
+                                                type="email" 
+                                                placeholder="Почта для отправки купона"
+                                                v-model.lazy="$v.userEmail.$model">
+                                        </div>
 
-                                <div class="payment-form__agree" :class="{ 'required-form': !$v.agreeChecker.$invalid }">
-                                    <input 
-                                        class="payment-form__agree-checkbox" 
-                                        type="checkbox" 
-                                        id="agree-checkbox"
-                                        v-model="agreeChecker"
-                                        @change="$v.agreeChecker.$touch()"
-                                        ><label 
-                                            class="agree-checkbox__label" 
-                                            for="agree-checkbox"
-                                            :class="{ 'payment-form__error-label': $v.agreeChecker.$error }"
-                                            >Согласен с условиями использования и <span>политикой конфиденциальности</span></label>
+                                        <div class="payment-form__agree" :class="{ 'required-form': !$v.agreeChecker.$invalid }">
+                                            <input 
+                                                class="payment-form__agree-checkbox" 
+                                                type="checkbox" 
+                                                id="agree-checkbox"
+                                                v-model="agreeChecker"
+                                                @change="$v.agreeChecker.$touch()"
+                                                ><label 
+                                                    class="agree-checkbox__label" 
+                                                    for="agree-checkbox"
+                                                    :class="{ 'payment-form__error-label': $v.agreeChecker.$error }"
+                                                    >Согласен с условиями использования и <span>политикой конфиденциальности</span></label>
+                                        </div>
+                                        <div class="payment__button">
+                                            <button class="base-button" type="submit">Оплатить</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="payment__button">
-                                    <button class="base-button" type="submit">Оплатить</button>
+                            </div>
+                            <div class="payments__rightside">
+                                <div class="payments__rightside-inner">
+                                    <img class="payments__rightside-img" src="../assets/img/img-footer1.png" alt="tea">
+                                    <div class="payments__rightside-text">
+                                        Остался последний шаг
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="payments__rightside">
-                        <div class="payments__rightside-inner">
-                            <img class="payments__rightside-img" src="../assets/img/img-footer1.png" alt="tea">
-                            <div class="payments__rightside-text">
-                                Остался последний шаг
                             </div>
                         </div>
-                    </div>
+                    </main>
                 </div>
-            </main>
-            <footer-elem></footer-elem>
-        </div>
+            </div>
+            <div class="footer__wrapper">
+                <div class="container">
+                    <footer-elem></footer-elem>
+                </div>
+            </div>
     </div>
 </template>
 
@@ -229,6 +239,18 @@ export default {
 <style lang="scss" scoped>
 .card-form {
     width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.header__wrapper {
+    flex: 0 0 auto;
+}
+.card-form__wrapper {
+    flex: 1 0 auto;
+}
+.footer__wrapper {
+    flex: 0 0 auto;
 }
 .container {
     max-width: 1230px;

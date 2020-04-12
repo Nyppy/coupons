@@ -32,14 +32,14 @@
                                     class="catalogue__list-item"
                                     v-for="item in getCategories" 
                                     :key="item.id"
-                                    @click="allCoupons([item.id, item.name])">
+                                    :id="item.id"
+                                    @click="allCoupons({'category': item})">
                                     <img class="catalogue__list-img" src="../assets/img/fork.png" alt="">
-                                    <span class="catalogue__list-item-name" :id="item.id">{{item.name}}</span>
+                                    <span class="catalogue__list-item-name" >{{item.name}}</span>
                                     <span 
                                         class="catalogue__list-item-count"
-                                        :class="{'catalogue__list-item-count--active': item.id === getCurrentCategoryId}"
-                                        >(100)</span> 
-                                    <!-- тут количество купонов ↑ -->
+                                        :class="{'catalogue__list-item-count--active': item.id === getCurrentCategory.id}"
+                                        >({{item.count}})</span> 
                                 </li>
                             </ul>
                         </div>
@@ -60,17 +60,19 @@
                             </li>
                             <li class="breadcrumps__item" @click.capture="disableLink($event)">
                                 <router-link class="breadcrumps__link" to="/">
-                                    <span>{{getCurrentCategoryName}}</span>
+                                    <span class="breadcrumps__link breadcrumps__link--active">{{getCurrentCategory.name}} </span>
+                                    <span class="breadcrumps__item-counter">({{currentCategoryCountMessage}})</span>
                                 </router-link>
                             </li>
                         </ul>
                     </div>
-
-                    <br>
-                    <br>
+                    <div class="catalogue-coupons">
+                        <base-coupons></base-coupons>
+                    </div>
+                   
                 </main>
             </div>
-            <div class="preloader" :class="{'preloader--active': getLockStateCategories}">
+            <div class="preloader" :class="{'preloader--active':  getLockStateCategories}">
                 <loader-elem></loader-elem>
             </div>
         </div>
@@ -84,28 +86,41 @@
 import FooterElem from "../components/TheFooter"
 import HeaderElem from "../components/TheHeader"
 import LoaderElem from '../components/Base/BasePreloader'
+import BaseCoupons from '../components/Base/BaseCoupons'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
     data() {
         return {
-            elem: 'Hello'
+            
         }
     },
     components: {
         LoaderElem,
         HeaderElem,
-        FooterElem
+        FooterElem,
+        BaseCoupons
     },
     computed: {
         ...mapGetters([
             'getCategories',
             'getCouponsList',
-            'getCurrentCategoryId',
+            'getCurrentCategory',
             'getLockStateCoupons',
-            'getLockStateCategories',
-            'getCurrentCategoryName'
-        ])
+            'getLockStateCategories'
+        ]),
+        currentCategoryCountMessage() {
+            let message = '';
+            let count = this.getCurrentCategory.count;
+            if (count === 1) {
+                message = '1 предложение'
+            } else if (count < 5 && count > 0) {
+                message = count + ' предложения'
+            } else {
+                message = count + ' предложений'
+            }
+            return message
+        }
     },
     methods: {
         ...mapActions([
@@ -117,8 +132,8 @@ export default {
         }
     },
     async mounted() {
-        this.allCategories();
-        this.allCoupons([1, 'Шоппинг']);
+        await this.allCategories();
+        this.allCoupons({'category': this.getCategories[0] });
         
     }
 }
@@ -127,6 +142,9 @@ export default {
 <style lang="scss" scoped>
 .catalogue {
     width: 100%;  
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
     max-width: 1980px;
     margin: 0 auto;
 }
@@ -135,12 +153,11 @@ export default {
     align-items: center;
     padding: 0 20px;
     border-bottom: 1px solid #d3d3d3;
+    flex: 0 0 auto;
 }
 .footer__wrapper {
     padding: 0 20px;
-}
-header-elem {
-    padding-bottom: 10px;
+    flex: 0 0 auto;
 }
 .header-search {
     margin-left: 23%;
@@ -178,11 +195,13 @@ header-elem {
 }
 .catalogue-body {
     position: relative;
-    min-height: 155px;
+    min-height: 75vh;
+    flex: 1 0 auto;
 }
 .catalogue-wrapper {
     display: flex;
     padding: 0 20px;
+    height: 100%;
 }
 .catalogue-filter {
     flex: 0 0 19%;
@@ -238,17 +257,19 @@ header-elem {
 .catalogue__list-header {
     font-size: 16px;
     font-weight: 700;
+    margin: 15px 0 10px;
 }
 .catalogue__list-inner {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 .catalogue__list-item {
     display: flex;
     align-items: center;
     font-size: 16px;
     line-height: 30px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     
 }
@@ -288,18 +309,39 @@ header-elem {
     }
 }
 .catalogue__breadcrumps {
-    padding-top: 15px;
-    padding-left: 20px;
+    padding-top: 20px;
+    padding-left: 25px;
 }
 .breadcrumps {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    margin: 0;
+    padding: 0;
     &__item {
         display: block;
         & + .breadcrumps__item {
             margin-left: 5px;
         }
     }
+    &__link {
+        font-size: 16px;
+        font-weight: 600;
+        color: #acacac;
+        text-decoration: none;
+        &--active {
+            color: #2e3d4c;
+        }
+    }
+}
+.catalogue__elements {
+    width: 100%;
+}
+.catalogue-coupons {
+    width: 100%;
+    height: 100%;
+    padding-left: 30px;
+    padding-top: 20px;
 }
 </style>

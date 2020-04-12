@@ -88,6 +88,11 @@
     margin-left: 40px;
 }
 /* -- media -- */
+@media (max-width: 1440px) {
+    .footer {
+        padding-bottom: 20px;
+    }
+}
 @media (max-width: 1040px) {
     .footer {
         margin-top: 25px;
@@ -136,7 +141,6 @@
         }
     }
     .footer {
-        padding-bottom: 20px;
         margin-top: 20px;
     }
     @media (max-width: 600px) {
