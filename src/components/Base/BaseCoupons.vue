@@ -8,14 +8,15 @@
                     :key="item.id"
                     :id="item.id"
                 >
-                    <div class="coupons__item-inner">
+                    <div class="coupons__item-inner" @click="changeCurrentCoupon(item); showPopup(true); dontScroll()">
                         <div class="coupons__item-picture">
                             <img class="coupons__item-image" src="../../assets/img/coupon-img.png" alt="">
                             <span 
-                                class="coupons__item-price"
-                                :class="{'coupons__item-price--small': checkFont(item.price)}"
-                                >{{item.price}}</span>
-                            <span class="coupons__item-sale">Free</span>
+                                class="coupons__item-sale"
+                                :class="{'coupons__item-sale--small': checkFont('25%')}"
+                                >25%</span>
+                                <!-- сверху надо вставить суть купона и в функцию ссылку на неё -->
+                            <span class="coupons__item-price">{{item.price}}</span>
                         </div>
                         <div class="coupons__item-title">{{item.name}}</div>
                         <div class="coupons__item-validity">
@@ -34,7 +35,7 @@
 
 <script>
 import LoaderElem from './BasePreloader'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
     components: {
@@ -42,14 +43,15 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'getCategories',
             'getCouponsList',
-            'getCurrentCategory',
-            'getLockStateCoupons',
-            'getLockStateCategories'
+            'getLockStateCoupons'
         ])
     },
     methods: {
+        ...mapActions([
+            'changeCurrentCoupon',
+            'showPopup'
+        ]),
         checkFont(price) {
             if (price.length > 6 && !parseInt(price)) return true;
             return false
@@ -64,6 +66,9 @@ export default {
             let thour = timer % 24; timer = Math.floor(timer/24);
             let timestr = "Осталось: " + timer + " д. " + thour + " ч. " + tmin + " м. " + tsec + " с.";
             return timestr;
+        },
+        dontScroll() {
+            document.body.style.overflow = 'hidden'
         }
     }
 }
@@ -72,8 +77,9 @@ export default {
 <style lang="scss" scoped>
 .coupons {
     position: relative;
-    width: 100%;
     height: 100%;
+    padding-left: 30px;
+    padding-top: 20px;
     &__list {
         display: flex;
         flex-direction: row;
@@ -107,7 +113,7 @@ export default {
             border-radius: 6px;
             
         }
-        &-price {
+        &-sale {
             max-width: 170px;
             position: absolute;
             bottom: 14px;
@@ -127,7 +133,7 @@ export default {
                 padding: 6px 5px;
             }
         }
-        &-sale {
+        &-price {
             position: absolute;
             top: 10px;
             left: -7px;

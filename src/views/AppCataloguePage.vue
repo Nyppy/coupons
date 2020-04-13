@@ -79,6 +79,7 @@
         <div class="footer__wrapper">
             <footer-elem></footer-elem>
         </div>
+        <base-popup></base-popup>
     </div>
 </template>
 
@@ -87,6 +88,7 @@ import FooterElem from "../components/TheFooter"
 import HeaderElem from "../components/TheHeader"
 import LoaderElem from '../components/Base/BasePreloader'
 import BaseCoupons from '../components/Base/BaseCoupons'
+import BasePopup from '../components/Base/BasePopup'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -99,7 +101,8 @@ export default {
         LoaderElem,
         HeaderElem,
         FooterElem,
-        BaseCoupons
+        BaseCoupons,
+        BasePopup
     },
     computed: {
         ...mapGetters([
@@ -107,7 +110,8 @@ export default {
             'getCouponsList',
             'getCurrentCategory',
             'getLockStateCoupons',
-            'getLockStateCategories'
+            'getLockStateCategories',
+            'getPopupState'
         ]),
         currentCategoryCountMessage() {
             let message = '';
@@ -141,12 +145,12 @@ export default {
 
 <style lang="scss" scoped>
 .catalogue {
-    width: 100%;  
     min-height: 100%;
     display: flex;
     flex-direction: column;
     max-width: 1980px;
     margin: 0 auto;
+    position: relative;
 }
 .header-wrapper {
     display: flex;
@@ -195,19 +199,17 @@ export default {
 }
 .catalogue-body {
     position: relative;
-    min-height: 75vh;
     flex: 1 0 auto;
+    display: flex;
 }
 .catalogue-wrapper {
     display: flex;
     padding: 0 20px;
-    height: 100%;
 }
 .catalogue-filter {
     flex: 0 0 19%;
     padding-top: 5px;
     padding-right: 15px;
-    width: 19%;
     min-width: 290px;
     height: 100%;
     border-right: 1px solid #ebebeb;
@@ -335,13 +337,8 @@ export default {
         }
     }
 }
-.catalogue__elements {
-    width: 100%;
-}
 .catalogue-coupons {
     width: 100%;
     height: 100%;
-    padding-left: 30px;
-    padding-top: 20px;
 }
 </style>

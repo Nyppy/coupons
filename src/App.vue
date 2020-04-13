@@ -17,10 +17,6 @@
         height: 100%;
     }
     #app {
-        display: flex;
-        flex-flow: column;
-        align-items: center;
-        justify-content: center;
         font-family: 'Montserrat', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
