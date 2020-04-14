@@ -10,5 +10,22 @@ export default new Router ({
             path: "/",
             component: () => import('./views/index.vue')
         },
+        {
+            path: "/check-payment-method",
+            component: () => import('./views/paymethods.vue')
+        },
+        {
+            path: "/credit-card-form",
+            component: () => import('./views/AppCardForm.vue')
+        },
+        {
+            path: "/successful-payment",
+            name: 'successPage',
+            component: () => import('./views/AppSuccessPage.vue')
+        },
+        {
+            path: "/coupons-catalogue",
+            component: () => import('./views/AppCataloguePage.vue')
+        }
     ]
 })

@@ -1,0 +1,176 @@
+<template>
+    <div class="coupons">
+        <div class="coupons__wrapper">
+            <ul class="coupons__list">
+                <li
+                    class="coupons__item"
+                    v-for="item in getCouponsList"
+                    :key="item.id"
+                    :id="item.id"
+                >
+                    <div class="coupons__item-inner">
+                        <div class="coupons__item-picture">
+                            <img class="coupons__item-image" src="../../assets/img/coupon-img.png" alt="">
+                            <span 
+                                class="coupons__item-price"
+                                :class="{'coupons__item-price--small': checkFont(item.price)}"
+                                >{{item.price}}</span>
+                            <span class="coupons__item-sale">Free</span>
+                        </div>
+                        <div class="coupons__item-title">{{item.name}}</div>
+                        <div class="coupons__item-validity">
+                            {{getTimer(item.end_data)}}
+                        </div>
+                        <div class="coupons__item-descr">{{item.summary}}</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="loader" :class="{'loader--active': getLockStateCoupons}">
+            <loader-elem/>
+        </div>
+    </div>
+</template>
+
+<script>
+import LoaderElem from './BasePreloader'
+import { mapGetters } from 'vuex'
+
+export default {
+    components: {
+        LoaderElem
+    },
+    computed: {
+        ...mapGetters([
+            'getCategories',
+            'getCouponsList',
+            'getCurrentCategory',
+            'getLockStateCoupons',
+            'getLockStateCategories'
+        ])
+    },
+    methods: {
+        checkFont(price) {
+            if (price.length > 6 && !parseInt(price)) return true;
+            return false
+        },
+        getTimer(end_date) {
+            let timeend = new Date(end_date);
+            let today = new Date();
+            let timer = Math.floor((timeend - today)/1000);
+            if (timer < 0) return 'Предложние уже не активно';
+            let tsec = timer % 60; timer = Math.floor(timer/60);
+            let tmin = timer % 60; timer = Math.floor(timer/60);
+            let thour = timer % 24; timer = Math.floor(timer/24);
+            let timestr = "Осталось: " + timer + " д. " + thour + " ч. " + tmin + " м. " + tsec + " с.";
+            return timestr;
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+.coupons {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    &__list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    &__item {
+        width: 25%;
+        height: 250px;
+        margin-bottom: 15px;
+        text-align: left;
+        &-inner {
+            width: 305px;
+            cursor: pointer;
+            &:hover .coupons__item-title {
+                color: #46d149;
+            }
+             &:hover .coupons__item-validity {
+                color: #2e3d4c; 
+             }
+        }
+        &-picture {
+            position: relative;
+            width: 305px;
+        }
+        &-image {
+            width: 305px;
+            height: auto;
+            border-radius: 6px;
+            
+        }
+        &-price {
+            max-width: 170px;
+            position: absolute;
+            bottom: 14px;
+            right: -7px;
+            font-size: 36px;
+            line-height: 44px;
+            font-weight: 600;
+            text-align: center;
+            background-color: #2e3d4c;
+            height: 44px;
+            border-radius: 7px;
+            color: #fff;
+            padding: 0px 10px;
+            &--small {
+                font-size: 16px;
+                line-height: 16px;
+                padding: 6px 5px;
+            }
+        }
+        &-sale {
+            position: absolute;
+            top: 10px;
+            left: -7px;
+            font-size: 36px;
+            line-height: 45px;
+            font-weight: 600;
+            background: linear-gradient( -13deg, rgb(64,196,67) 0%, rgb(85,242,89) 100%);
+            height: 45px;
+            border-radius: 7px;
+            color: #fff;
+            padding: 0px 10px;
+        }
+        &-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2e3d4c;
+            padding: 4px 0 2px;
+        }
+        &-validity {
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 700;
+            margin-bottom: 3px;
+            color: #8f8f8f;
+        }
+        &-descr {
+            font-size: 12px;
+            line-height: 12px;
+            font-weight: 600;
+            color: #46515d;
+        }
+    }
+}
+.loader {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: none;
+    &--active {
+        display: flex;
+    }
+}
+</style>
