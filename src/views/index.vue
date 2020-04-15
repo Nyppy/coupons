@@ -1,84 +1,90 @@
 <template>
   <div>
-    <header>
-      <div class="Left_menu">
-        <div class="logo">
-          <img src="~@/assets/img/coupons_logo.svg" alt="#" />
-        </div>
-        <div class="sorting">
-          <p>Сортировка</p>
-          <form action>
-            <div class="form_info">
-              <img src="~@/assets/img/badges with registration/language.png" alt />
-              <select name="country" class="country">
-                <option>Выберите язык</option>
-                <option value="Россия">Россия</option>
-                <option value="Украина">Украина</option>
-                <option value="Беларусь">Беларусь</option>
-              </select>
-            </div>
-            <div class="form_info">
-              <img src="~@/assets/img/badges with registration/world.png" alt />
-              <select name="country" class="country">
-                <option>Выберите страну</option>
-                <option value="Россия">Россия</option>
-                <option value="Украина">Украина</option>
-                <option value="Беларусь">Беларусь</option>
-              </select>
-            </div>
-            <div class="form_info">
-              <img src="~@/assets/img/badges with registration/urban.png" alt />
-              <select name="country" class="country">
-                <option>Выберите город</option>
-                <option value="Россия">Россия</option>
-                <option value="Украина">Украина</option>
-                <option value="Беларусь">Беларусь</option>
-              </select>
-            </div>
-          </form>
-          <button class="Button">Посмотреть купоны</button>
-        </div>
-      </div>
-      <div class="right_menu">
-        <div class="slid1">
-          <img src="~@/assets/img/img-footer6.png" alt />
-          <div class="text">
-            <p>Лучшие скидки во время
-            <br />вашего путешествия.<p/>
+    <div class="container">
+      <header>
+        <div class="Left_menu">
+          <div class="logo">
+            <img src="~@/assets/img/coupons_logo.svg" alt="#" />
+          </div>
+          <div class="sorting">
+            <p>Сортировка</p>
+            <form action>
+              <div class="form_info">
+                <img src="~@/assets/img/badges with registration/language.png" alt />
+                <select name="country" class="country">
+                  <option>Выберите язык</option>
+                  <option value="Россия">Россия</option>
+                  <option value="Украина">Украина</option>
+                  <option value="Беларусь">Беларусь</option>
+                </select>
+              </div>
+              <div class="form_info">
+                <img src="~@/assets/img/badges with registration/world.png" alt />
+                <select name="country" class="country">
+                  <option>Выберите страну</option>
+                  <option value="Россия">Россия</option>
+                  <option value="Украина">Украина</option>
+                  <option value="Беларусь">Беларусь</option>
+                </select>
+              </div>
+              <div class="form_info">
+                <img src="~@/assets/img/badges with registration/urban.png" alt />
+                <select name="country" class="country">
+                  <option>Выберите город</option>
+                  <option value="Россия">Россия</option>
+                  <option value="Украина">Украина</option>
+                  <option value="Беларусь">Беларусь</option>
+                </select>
+              </div>
+            </form>
+            <button class="Button">Посмотреть купоны</button>
           </div>
         </div>
-        <div class="slid2">
-          <img src="~@/assets/img/img-footer4.png" alt />
-          <div class="text">
-            <p>Экстримальные ощущения
-            <br />или тихий отдых.</p>
+        <div class="right_menu">
+          <div class="slid1">
+            <img src="~@/assets/img/img-footer6.png" alt />
+            <div class="text">
+              <p>Лучшие скидки во время
+              <br />вашего путешествия.<p/>
+            </div>
           </div>
-        </div>
-        <div class="slid3">
-          <img src="~@/assets/img/img-footer5.png" alt />
-          <div class="text">
-            <p>Получите максимум эмоций
-            <br />от отдыха с нашими купонами.</p>
+          <!-- <div class="slid2">
+            <img src="~@/assets/img/img-footer4.png" alt />
+            <div class="text">
+              <p>Экстримальные ощущения
+              <br />или тихий отдых.</p>
+            </div>
           </div>
+          <div class="slid3">
+            <img src="~@/assets/img/img-footer5.png" alt />
+            <div class="text">
+              <p>Получите максимум эмоций
+              <br />от отдыха с нашими купонами.</p>
+            </div>
+          </div> -->
+        </div> 
+      </header>
+    </div>
+    <div class="footer__wrapper">
+        <div class="container">
+            <footer-elem></footer-elem>
         </div>
-      </div>
-    </header>
-    <Footer />
+    </div>
   </div>
 </template>
 
 
 <script>
-import Footer from "@/components/footer";
-import Slick from 'vue-slick';
-import Vue from 'vue'
+import FooterElem from "@/components/TheFooter";
+/*import Slick from 'vue-slick';*/
+/*import Vue from 'vue'*/
 
 export default {
   components: {
-    Footer
+    FooterElem
   }
 };
- 
+ /*
 new Vue ({
  
     components: { Slick },
@@ -106,10 +112,16 @@ new Vue ({
             });
         },
     },
-}); 
+}); */
 </script>
 
 <style scoped>
+.container {
+  min-width: 1230px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
 header {
   display: flex;
   margin-top: 135px;
@@ -194,5 +206,83 @@ header {
   font-weight: bold;
   line-height: 30px;
   border: 0;
+}
+
+@media (max-width: 1040px) {
+    .main {
+        padding: 10px 0;
+    }
+} 
+@media (max-width: 1040px) {
+    .payments__inner {
+        min-height: 440px;
+    }
+}
+@media (max-width: 900px) {
+    .payments__info-inner {
+        padding-right: 15px;
+    }
+  }
+@media (max-width: 900px) {
+    .payments__info-list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+  }
+@media (max-width: 900px) {
+    .payments__info-img {
+        width: 80%;
+        height: auto;
+    }
+  }
+@media (max-width: 900px) {
+    .payments__info-link + .payments__info-link {
+        margin-left: 0;
+    }
+  }
+  @media (max-width: 900px) {
+    .payments__info-title {
+        font-size: 20px;
+        line-height: 36px;
+        margin-top: 5px;
+    }
+  }
+  @media (max-width: 900px) {
+    .payments__rightside-img {
+        width: 80%;
+        height: auto;
+    }
+}
+@media (max-width: 700px) {
+    .payments__inner {
+        min-height: 380px;
+    }
+}
+@media (max-width: 630px) {
+    .payments__inner {
+        display: block;
+        min-height: auto;
+    }
+  }
+@media (max-width: 630px) {
+    .payments__info {
+        text-align: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        /* &::after {
+            display: none;
+        } */
+    }
+  }
+@media (max-width: 630px) {
+    .payments__info-inner {
+        padding-right: 0;
+    }
+  }
+@media (max-width: 630px) {
+    .payments__info-title {
+        margin-top: 15px;
+    }
 }
 </style>
