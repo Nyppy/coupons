@@ -1,34 +1,74 @@
 <template>
     <div class="footer">
-            <div class="footer__inner">
-                <nav class="footer__nav">
-                    <router-link class="footer__nav-link" to="">О нас</router-link>
-                    <router-link class="footer__nav-link" to="">Разместить купон</router-link>
-                    <router-link class="footer__nav-link" to="">Партнерская программа</router-link>
-                    <router-link class="footer__nav-link" to="">Политика конфиденциальности</router-link>
-                    <router-link class="footer__nav-link" to="">Условия использования</router-link>
-                </nav>
-                <div class="info">
-                    <div class="date">
-                        &copy;2020 <span>Coupons. </span>Все права защищены.
-                    </div>
-                    <div class="payment">
-                        <img src="~@/assets/img/badges with registration/visa.png" alt="">
-                        <img src="~@/assets/img/badges with registration/mastercard.png" alt="">
-                        <img src="~@/assets/img/badges with registration/paypal.png" alt="">
-                    </div>
-                    <div class="link">
-                        <p>При поддержке: </p>
-                        <a href="https://jscorp.ru/">JS Corp.</a>
-                    </div>
-                </div>  
-            </div>
+        <div class="footer__inner">
+            <nav class="footer__nav">
+                <router-link class="footer__nav-link" to="">{{ $t('menu.about_us') }}</router-link>
+                <router-link class="footer__nav-link" to="">{{ $t('menu.place_coupon') }}</router-link>
+                <router-link class="footer__nav-link" to="">{{ $t('menu.affiliate_program') }}</router-link>
+                <router-link class="footer__nav-link" to="">{{ $t('menu.privacy_policy') }}</router-link>
+                <router-link class="footer__nav-link" to="">{{ $t('menu.terms_of_use') }}</router-link>
+            </nav>
+            <div class="info">
+                <div class="date">
+                    &copy;2020 <span>Coupons. </span>{{ $t('all_rights_reserved') }}.
+                </div>
+                <div class="payment">
+                    <img src="~@/assets/img/badges with registration/visa.png" alt="">
+                    <img src="~@/assets/img/badges with registration/mastercard.png" alt="">
+                    <img src="~@/assets/img/badges with registration/paypal.png" alt="">
+                </div>
+                <div class="link">
+                    <p>{{ $t('supported_by') }}: </p>
+                    <a href="https://jscorp.ru/">JS Corp.</a>
+                </div>
+            </div>  
+        </div>
     </div>
 </template>
 
 <script>
-
+    export default {
+        props: ['local'],
+        data () {
+          return { 
+            langs: ['ru', 'en'],
+            this_: this,
+          }
+        },
+        watch: {
+            local: function(e) {
+                this.$i18n.locale = e;
+            }
+        }
+    }
 </script>
+
+<i18n>
+  { 
+    "ru": {
+      "menu": {
+        "about_us": "О нас",
+        "place_coupon": "Разместить купон",
+        "affiliate_program": "Партнерская программа",
+        "privacy_policy": "Политика конфиденциальности",
+        "terms_of_use": "Условия использования"
+      },
+      "all_rights_reserved": "Все права защищены",
+      "supported_by": "При поддержке"
+    },
+    "en": {
+      "menu": {
+        "about_us": "About us",
+        "place_coupon": "Place coupon",
+        "affiliate_program": "Affiliate program",
+        "privacy_policy": "Privacy policy",
+        "terms_of_use": "Terms_of_use"
+      },
+      "all_rights_reserved": "All rights reserved",
+      "supported_by": "Supported by"
+    }
+  }
+</i18n>
 
 <style lang="scss" scoped>
 .footer {
