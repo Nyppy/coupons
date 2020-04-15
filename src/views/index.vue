@@ -121,7 +121,7 @@ new Vue ({
 <i18n>
   { 
     "ru": {
-      "ru": "Russian",
+      "ru": "Русский",
       "en": "English",
       "sorted": "Сортировка",
       "view_coupons": "Посмотреть купоны",
