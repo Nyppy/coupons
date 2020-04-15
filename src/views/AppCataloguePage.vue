@@ -466,6 +466,9 @@ export default {
     .catalogue__breadcrumps {
         padding: 20px 5px 5px 20px;
     }
+    .catalogue__elements {
+        padding-bottom: 45px;
+    }
 }
 @media (max-width: 700px) {
     .catalogue-wrapper {
@@ -489,6 +492,9 @@ export default {
     }
     .header-search {
         margin-left: 0;
+    }
+    .catalogue__elements {
+        padding-bottom: 40px;
     }
 }
 @media (max-width: 550px) {
@@ -525,6 +531,9 @@ export default {
     }
     .catalogue__breadcrumps {
         padding: 5px 5px 5px 0px;
+    }
+    .catalogue__elements {
+        padding-bottom: 30px;
     }
 }
 
