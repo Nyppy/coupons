@@ -1,86 +1,6 @@
 <template>
   <div>
-<<<<<<< HEAD
-    <header>
-      <div class="Left_menu">
-        <div class="logo">
-          <img src="~@/assets/img/coupons_logo.svg" alt="#" />
-        </div>
-        <div class="sorting">
-          <p>Сортировка</p>
-          <form action>
-            <div class="form_info">
-              <img src="~@/assets/img/badges with registration/language.png" alt />
-              <select name="country" class="country">
-                <option>Выберите язык</option>
-                <option value="Россия">Россия</option>
-                <option value="Украина">Украина</option>
-                <option value="Беларусь">Беларусь</option>
-              </select>
-            </div>
-            <div class="form_info">
-              <img src="~@/assets/img/badges with registration/world.png" alt />
-              <select name="country" class="country">
-                <option>Выберите страну</option>
-                <option value="Россия">Россия</option>
-                <option value="Украина">Украина</option>
-                <option value="Беларусь">Беларусь</option>
-              </select>
-            </div>
-            <div class="form_info">
-              <img src="~@/assets/img/badges with registration/urban.png" alt />
-              <select name="country" class="country">
-                <option>Выберите город</option>
-                <option value="Россия">Россия</option>
-                <option value="Украина">Украина</option>
-                <option value="Беларусь">Беларусь</option>
-              </select>
-            </div>
-          </form>
-          <button class="Button">Посмотреть купоны</button>
-        </div>
-      </div>
-      <div class="right_menu">
-        <slick
-          ref="slick"
-          :options="slickOptions"
-          @afterChange="handleAfterChange"
-          @beforeChange="handleBeforeChange"
-          @breakpoint="handleBreakpoint"
-          @destroy="handleDestroy"
-          @edge="handleEdge"
-          @init="handleInit"
-          @reInit="handleReInit"
-          @setPosition="handleSetPosition"
-          @swipe="handleSwipe"
-          @lazyLoaded="handleLazyLoaded"
-          @lazyLoadError="handleLazeLoadError">
-            <div class="slid1">
-              <img src="~@/assets/img/img-footer6.png" alt />
-              <div class="text">
-                <p>Лучшие скидки во время
-                <br />вашего путешествия.<p/>
-              </div>
-            </div>
-            <div class="slid2">
-              <img src="~@/assets/img/img-footer4.png" alt />
-              <div class="text">
-                <p>Экстримальные ощущения
-                <br />или тихий отдых.</p>
-              </div>
-            </div>
-            <div class="slid3">
-              <img src="~@/assets/img/img-footer5.png" alt />
-              <div class="text">
-                <p>Получите максимум эмоций
-                <br />от отдыха с нашими купонами.</p>
-              </div>
-            </div>
-        </slick>
-      </div>
-    </header>
-    <Footer />
-=======
+
     <div class="container">
       <header>
         <div class="Left_menu">
@@ -150,29 +70,18 @@
             ></footer-elem>
         </div>
     </div>
->>>>>>> test_translate
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-import Footer from "@/components/TheFooter";
-import Slick from 'vue-slick';
-import 'slick-carousel/slick/slick.css'
-=======
+
 import FooterElem from "@/components/TheFooter";
 /*import Slick from 'vue-slick';*/
->>>>>>> test_translate
 /*import Vue from 'vue'*/
 
 export default {
   components: {
-<<<<<<< HEAD
-    Footer,
-    Slick
-  },
-  data() {
-=======
+
     FooterElem
   },
   data () {
@@ -187,7 +96,6 @@ new Vue ({
     components: { Slick },
  
     data() {
->>>>>>> test_translate
         return {
             slickOptions: {
                 slidesToShow: 1,
@@ -213,13 +121,10 @@ new Vue ({
 
         
     }
-}
+}*/
 </script>
 
-<<<<<<< HEAD
-<style  scoped>
-/* @import '../../node_modules/slick-carousel/slick/slick.css'; */
-=======
+
 <i18n>
   { 
     "ru": {
@@ -268,7 +173,7 @@ new Vue ({
   padding: 0 15px;
   margin: 0 auto;
 }
->>>>>>> test_translate
+
 
 header {
   display: flex;

@@ -101,10 +101,10 @@ export default {
         }
         &-picture {
             position: relative;
-            width: 305px;
         }
         &-image {
-            width: 305px;
+            width: 100%;
+            max-width: 305px;
             height: 145px;
             border-radius: 6px;
         }
@@ -179,6 +179,43 @@ export default {
 @media (max-width: 1367px) {
     .coupons__item { 
         width: 50%;
+    }
+}
+@media (max-width: 1023px) {
+    .coupons {
+        padding-left: 0;
+    }
+}
+@media (max-width: 700px) {
+    .coupons__item {
+        height: 240px;
+    }
+    .coupons__item-inner {
+        max-width: 260px;
+        width: 100%;
+    }
+    .coupons__item-image {
+        height: auto;
+    }
+}
+@media (max-width: 600px) { 
+    .coupons__item {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+    .coupons__item-inner {
+        max-width: 305px;
+    }
+}
+@media (max-width: 475px) { 
+    .coupons {
+        padding-top: 10px;
+    }
+}
+@media (max-width: 375px) { 
+    .coupons__item-inner {
+        max-width: 275px;
     }
 }
 </style>

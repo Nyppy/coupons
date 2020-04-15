@@ -83,7 +83,7 @@
                                                     class="agree-checkbox__label" 
                                                     for="agree-checkbox"
                                                     :class="{ 'payment-form__error-label': $v.agreeChecker.$error }"
-                                                    >Согласен с условиями использования и <span>политикой конфиденциальности</span></label>
+                                                    > <span> Согласен с условиями использования и <span class="policy">политикой конфиденциальности</span></span></label>
                                         </div>
                                         <div class="payment__button">
                                             <button class="base-button" type="submit">Оплатить</button>
@@ -387,7 +387,7 @@ export default {
 .payment-form__email-input {
     width: 100%;
     border: 0;
-    padding: 20px 10px 20px 55px;
+    padding: 25px 10px 15px 55px;
     font-size: 18px;
     font-weight: 400;
     outline: none;
@@ -446,9 +446,8 @@ export default {
         background-repeat: no-repeat;
         background-position: center center;
     }
-    span {
+    & .policy {
         color: #44cd48;
-        display: contents;
     }
 }
 
@@ -642,11 +641,11 @@ export default {
     }
     .payment-form__agree {
         &::after {
-            left: 305px;
+            left: 308px;
         }
     }
 }
-@media (max-width: 376px) {
+@media (max-width: 359px) {
     .payment-form__agree {
         &::after {
             left: 224px;

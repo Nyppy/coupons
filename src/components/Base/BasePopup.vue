@@ -16,7 +16,7 @@
             <div class="popup-address__inner">
                 <div class="popup-address__title">Адрес:</div>
                 <div class="popup-address__info">
-                    Россия, г. Нижний Новгород, ул. Карла Маркса, д.15
+                    {{getCurrentCoupon.address}}
                 </div>
             </div>
             <div class="popup__buttons">
@@ -156,5 +156,76 @@ export default {
     &:hover {
         background: linear-gradient( -13deg, rgb(85,242,89) 0%, rgb(64,196,67) 100%);
     }
+}
+@media (max-width: 544px) {
+    .popup-price__wrapper {
+        font-size: 28px;
+        padding: 5px 0 10px;
+    }
+    .popup-price span {
+        font-size: 22px;
+    }
+    .popup-name {
+        font-size: 20px;
+        line-height: 21px;
+    }
+    .popup-validity {
+        font-size: 14px;
+        line-height: 15px;
+        margin-bottom: 15px;
+    }
+    .popup-descr__info, .popup-address__info {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+}
+@media (max-width: 475px) {
+    .popup__inner {
+        padding: 15px;
+    }
+    .popup-price__wrapper {
+        font-size: 24px;
+        padding: 2px 0 7px;
+    }
+    .popup-price span {
+        font-size: 18px;
+    }
+    .popup-name {
+        font-size: 18px;
+        line-height: 19px;
+    }
+    .popup-validity {
+        font-size: 12px;
+        line-height: 13px;
+        margin-bottom: 10px;
+    }
+    .popup-descr__title, .popup-address__title {
+        font-size: 12px;
+    }
+    .popup-descr__info, .popup-address__info {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+    .popup__buttons {
+        display: flex;
+        justify-content: center;
+    }
+}
+@media (max-width: 375px) {
+    .popup__inner {
+        padding: 10px;
+    }
+    .popup-price__wrapper {
+        font-size: 20px;
+        padding: 2px 0 7px;
+    }
+    .popup-price span {
+        font-size: 16px;
+    }
+    .popup-name {
+        font-size: 16px;
+        line-height: 17px;
+    }
+
 }
 </style>

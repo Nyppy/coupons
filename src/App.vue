@@ -24,5 +24,6 @@
         color: #2c3e50;
         margin: 0;
         height: 100%;
+        user-select: none;
     }
 </style>

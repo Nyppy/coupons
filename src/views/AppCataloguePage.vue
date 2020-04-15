@@ -44,26 +44,20 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="catalogue-filter__open-button" @click="showMenu()">&#9658;</div>
+                    <div class="catalogue-filter__close-button" @click="toogleMenu()"></div>
+                    <div class="catalogue-filter__open-button" @click="toogleMenu()">&#9658;</div>
                 </aside>  
                 <main class="catalogue__elements">
                     <div class="catalogue__breadcrumps">
                         <ul class="breadcrumps">
                             <li class="breadcrumps__item">
-                                <router-link class="breadcrumps__link" to="/">
-                                    <span>Купоны /</span>
-                                </router-link>
-                            </li>
-                            <li class="breadcrumps__item">
-                                <router-link class="breadcrumps__link" to="/">
-                                    <span>Категории /</span>
-                                </router-link>
+                                <span class="breadcrumps__text">Категории /</span>
                             </li>
                             <li class="breadcrumps__item" @click.capture="disableLink($event)">
-                                <router-link class="breadcrumps__link" to="/">
-                                    <span class="breadcrumps__link breadcrumps__link--active">{{getCurrentCategory.name}} </span>
+                                <div class="breadcrumps__text">
+                                    <span class="breadcrumps__text breadcrumps__text--active">{{getCurrentCategory.name}} </span>
                                     <span class="breadcrumps__item-counter">({{currentCategoryCountMessage}})</span>
-                                </router-link>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -131,7 +125,7 @@ export default {
         disableLink(e) {
             e.preventDefault();
         },
-        showMenu() {
+        toogleMenu() {
             document.querySelector('.catalogue-filter').classList.toggle('catalogue-filter--show');
         }
     },
@@ -199,6 +193,7 @@ export default {
     position: relative;
     display: flex;
     overflow: hidden;
+    height: 100%;
 }
 .catalogue-wrapper {
     display: flex;
@@ -309,7 +304,7 @@ export default {
     }
 }
 .catalogue__elements {
-    padding-bottom: 40px;
+    padding-bottom: 65px;
 }
 .catalogue__breadcrumps {
     padding: 40px 5px 5px 25px;
@@ -317,7 +312,6 @@ export default {
 .breadcrumps {
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     margin: 0;
     padding: 0;
@@ -327,7 +321,8 @@ export default {
             margin-left: 5px;
         }
     }
-    &__link {
+    &__text {
+        white-space: nowrap;
         font-size: 16px;
         font-weight: 600;
         color: #acacac;
@@ -361,6 +356,44 @@ export default {
     text-shadow: 0px 0px 13px #0f1310;
     color: rgb(227, 255, 227);
     display: none;
+    transition: all .5s;
+    &:hover {
+        top: 38px;
+        right: -26px;
+        width: 26px;
+        height: 52px;
+    }
+}
+.catalogue-filter__close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: all .2s;
+    &:hover {
+        &::before, &::after{
+            height: 3px;
+        }
+    }
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        margin-top: -1px;
+        background: #34a136;
+    }
+    &::before {
+        transform: rotate(45deg);
+    }
+    &::after {
+        transform: rotate(-45deg);
+    }
 }
 /*-- media --*/ 
 @media (max-height: 800px) {
@@ -382,24 +415,15 @@ export default {
     .girl-img {
         width: 250px;
     }
-//    .catalogue-filter {
-//        position: absolute;
-//         background: white;
-//         z-index: 2;
-//         height: 100%;
-//         transform: translateX(-100%);
-//         border-right: 1px solid #123a0a;
-//         padding-right: 0;
-//         padding-bottom: 125px;
-//         margin-left: -20px;
-//         transition: transform .5s;
-//         &--show {
-//             transform: translateX(0);
-//             margin-left: 0;
-//         }
-//     }
-//
 } 
+@media (max-width: 1700px) {
+    .catalogue-wrapper {
+        width: 100%;
+    }
+    .catalogue__elements {
+        width: 100%;
+    }
+}
 
 @media (max-width: 1200px) {
     .girl-img {
@@ -419,4 +443,90 @@ export default {
         padding-bottom: 125px;
     }
 }
+@media (max-width: 1023px) {
+   .catalogue-filter {
+        position: absolute;
+        z-index: 2;
+        margin-left: -20px;
+        transform: translateX(-100%);
+        border-right: 2px solid #34a136;
+        padding-right: 0;
+        transition: transform .5s;
+        &--show {
+            transform: translateX(0);
+            padding-left: 20px;
+        }
+    }
+    .catalogue-filter__open-button {
+        display: block;
+    }
+    .catalogue-filter__close-button {
+        display: inline-block;
+    }
+    .catalogue__breadcrumps {
+        padding: 20px 5px 5px 20px;
+    }
+}
+@media (max-width: 700px) {
+    .catalogue-wrapper {
+        padding: 0 10px;
+    }
+    .catalogue-filter {
+        width: 100%;
+    }  
+    .catalogue__breadcrumps {
+        padding: 15px 5px 5px 15px;
+    }
+    .catalogue-filter {
+        margin-left: -10px;
+        &--show {
+            padding-left: 10px;
+        }
+    }
+    .header-wrapper {
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+    .header-search {
+        margin-left: 0;
+    }
+}
+@media (max-width: 550px) {
+    .breadcrumps__text  {
+        font-size: 14px;
+    }
+}
+@media (max-width: 475px) {
+    .breadcrumps__text  {
+        font-size: 12px;
+    }
+    .header-wrapper {
+        display: block;
+    }
+    .header-search {
+        width: 280px;
+        margin: 0 auto;
+        border: 1px solid #d3d3d3;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        border-bottom: none;
+    }
+    .header-search__input {
+        font-size: 14px;
+        line-height: 16px;
+        padding: 5px 5px 5px 12px;
+        width: 90%;
+    }
+    .header-search__button {
+        left: 5px;
+        width: 18px;
+        height: 18px;
+        background-size: contain;
+    }
+    .catalogue__breadcrumps {
+        padding: 5px 5px 5px 0px;
+    }
+}
+
+
 </style>
