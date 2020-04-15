@@ -26,6 +26,6 @@ export default new Router ({
         {
             path: "/coupons-catalogue",
             component: () => import('./views/AppCataloguePage.vue')
-        }
+        },
     ]
 })
