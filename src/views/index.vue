@@ -40,27 +40,42 @@
         </div>
       </div>
       <div class="right_menu">
-        <div class="slid1">
-          <img src="~@/assets/img/img-footer6.png" alt />
-          <div class="text">
-            <p>Лучшие скидки во время
-            <br />вашего путешествия.<p/>
-          </div>
-        </div>
-        <div class="slid2">
-          <img src="~@/assets/img/img-footer4.png" alt />
-          <div class="text">
-            <p>Экстримальные ощущения
-            <br />или тихий отдых.</p>
-          </div>
-        </div>
-        <div class="slid3">
-          <img src="~@/assets/img/img-footer5.png" alt />
-          <div class="text">
-            <p>Получите максимум эмоций
-            <br />от отдыха с нашими купонами.</p>
-          </div>
-        </div>
+        <slick
+          ref="slick"
+          :options="slickOptions"
+          @afterChange="handleAfterChange"
+          @beforeChange="handleBeforeChange"
+          @breakpoint="handleBreakpoint"
+          @destroy="handleDestroy"
+          @edge="handleEdge"
+          @init="handleInit"
+          @reInit="handleReInit"
+          @setPosition="handleSetPosition"
+          @swipe="handleSwipe"
+          @lazyLoaded="handleLazyLoaded"
+          @lazyLoadError="handleLazeLoadError">
+            <div class="slid1">
+              <img src="~@/assets/img/img-footer6.png" alt />
+              <div class="text">
+                <p>Лучшие скидки во время
+                <br />вашего путешествия.<p/>
+              </div>
+            </div>
+            <div class="slid2">
+              <img src="~@/assets/img/img-footer4.png" alt />
+              <div class="text">
+                <p>Экстримальные ощущения
+                <br />или тихий отдых.</p>
+              </div>
+            </div>
+            <div class="slid3">
+              <img src="~@/assets/img/img-footer5.png" alt />
+              <div class="text">
+                <p>Получите максимум эмоций
+                <br />от отдыха с нашими купонами.</p>
+              </div>
+            </div>
+        </slick>
       </div>
     </header>
     <Footer />
@@ -70,46 +85,47 @@
 
 <script>
 import Footer from "@/components/TheFooter";
-/*import Slick from 'vue-slick';*/
+import Slick from 'vue-slick';
+import 'slick-carousel/slick/slick.css'
 /*import Vue from 'vue'*/
 
 export default {
   components: {
-    Footer
-  }
-};
- /*
-new Vue ({
- 
-    components: { Slick },
- 
-    data() {
+    Footer,
+    Slick
+  },
+  data() {
         return {
             slickOptions: {
-                slidesToShow: 3,
+                slidesToShow: 1,
+                // Any other options that can be got from plugin documentation
             },
         };
     },
-
-    methods: {
+  methods: {
         next() {
             this.$refs.slick.next();
         },
- 
+
         prev() {
             this.$refs.slick.prev();
         },
- 
+
         reInit() {
+            // Helpful if you have to deal with v-for to update dynamic lists
             this.$nextTick(() => {
                 this.$refs.slick.reSlick();
             });
         },
-    },
-}); */
+
+        
+    }
+}
 </script>
 
-<style scoped>
+<style  scoped>
+/* @import '../../node_modules/slick-carousel/slick/slick.css'; */
+
 header {
   display: flex;
   margin-top: 135px;
@@ -117,6 +133,7 @@ header {
 
 .right_menu {
   margin-left: 170px;
+  max-width: 335px;
 }
 
 /* .slid2 {

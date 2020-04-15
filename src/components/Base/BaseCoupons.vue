@@ -1,32 +1,28 @@
 <template>
     <div class="coupons">
-        <div class="coupons__wrapper">
-            <ul class="coupons__list">
-                <li
-                    class="coupons__item"
-                    v-for="item in getCouponsList"
-                    :key="item.id"
-                    :id="item.id"
-                >
-                    <div class="coupons__item-inner" @click="changeCurrentCoupon(item); showPopup(true); dontScroll()">
-                        <div class="coupons__item-picture">
-                            <img class="coupons__item-image" src="../../assets/img/coupon-img.png" alt="">
-                            <span 
-                                class="coupons__item-sale"
-                                :class="{'coupons__item-sale--small': checkFont('25%')}"
-                                >25%</span>
-                                <!-- сверху надо вставить суть купона и в функцию ссылку на неё -->
-                            <span class="coupons__item-price">{{item.price}}</span>
-                        </div>
-                        <div class="coupons__item-title">{{item.name}}</div>
-                        <div class="coupons__item-validity">
-                            {{getTimer(item.end_data)}}
-                        </div>
-                        <div class="coupons__item-descr">{{item.summary}}</div>
+        <ul class="coupons__list">
+            <li
+                class="coupons__item"
+                v-for="item in getCouponsList"
+                :key="item.id"
+                :id="item.id"
+            >
+                <div class="coupons__item-inner" @click="changeCurrentCoupon(item); showPopup(true); dontScroll()">
+                    <div class="coupons__item-picture">
+                        <img class="coupons__item-image" src="../../assets/img/coupon-img.jpg" alt="">
+                        <span 
+                            class="coupons__item-sale"
+                            >{{item.price_sale}}</span>
+                        <span class="coupons__item-price">{{item.price_service == 0 ? "Free" : item.price_service}}</span>
                     </div>
-                </li>
-            </ul>
-        </div>
+                    <div class="coupons__item-title">{{item.name}}</div>
+                    <div class="coupons__item-validity">
+                        {{getTimer(item.end_data)}}
+                    </div>
+                    <div class="coupons__item-descr">{{item.summary}}</div>
+                </div>
+            </li>
+        </ul>
         <div class="loader" :class="{'loader--active': getLockStateCoupons}">
             <loader-elem/>
         </div>
@@ -52,10 +48,6 @@ export default {
             'changeCurrentCoupon',
             'showPopup'
         ]),
-        checkFont(price) {
-            if (price.length > 6 && !parseInt(price)) return true;
-            return false
-        },
         getTimer(end_date) {
             let timeend = new Date(end_date);
             let today = new Date();
@@ -75,11 +67,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../styles/scroll';
+
 .coupons {
     position: relative;
     height: 100%;
     padding-left: 30px;
-    padding-top: 20px;
+    padding-top: 15px;
+    overflow-y: auto;
+    @extend %scroll;
     &__list {
         display: flex;
         flex-direction: row;
@@ -109,9 +105,8 @@ export default {
         }
         &-image {
             width: 305px;
-            height: auto;
+            height: 145px;
             border-radius: 6px;
-            
         }
         &-sale {
             max-width: 170px;
@@ -127,11 +122,6 @@ export default {
             border-radius: 7px;
             color: #fff;
             padding: 0px 10px;
-            &--small {
-                font-size: 16px;
-                line-height: 16px;
-                padding: 6px 5px;
-            }
         }
         &-price {
             position: absolute;
@@ -143,7 +133,6 @@ export default {
             background: linear-gradient( -13deg, rgb(64,196,67) 0%, rgb(85,242,89) 100%);
             height: 45px;
             border-radius: 7px;
-            color: #fff;
             padding: 0px 10px;
         }
         &-title {
@@ -177,6 +166,19 @@ export default {
     display: none;
     &--active {
         display: flex;
+    }
+}
+@media (max-width: 1700px) {
+    .coupons__item {
+        width: 33.33%;
+    }
+    .coupons__item-inner {
+        margin: 0 auto;
+    }
+}
+@media (max-width: 1367px) {
+    .coupons__item { 
+        width: 50%;
     }
 }
 </style>

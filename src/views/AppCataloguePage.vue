@@ -44,6 +44,7 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="catalogue-filter__open-button" @click="showMenu()">&#9658;</div>
                 </aside>  
                 <main class="catalogue__elements">
                     <div class="catalogue__breadcrumps">
@@ -76,15 +77,12 @@
                 <loader-elem></loader-elem>
             </div>
         </div>
-        <div class="footer__wrapper">
-            <footer-elem></footer-elem>
-        </div>
+        <img class="girl-img" src="../assets/img/img-footer7.png" alt="" >
         <base-popup></base-popup>
     </div>
 </template>
 
 <script>
-import FooterElem from "../components/TheFooter"
 import HeaderElem from "../components/TheHeader"
 import LoaderElem from '../components/Base/BasePreloader'
 import BaseCoupons from '../components/Base/BaseCoupons'
@@ -100,7 +98,6 @@ export default {
     components: {
         LoaderElem,
         HeaderElem,
-        FooterElem,
         BaseCoupons,
         BasePopup
     },
@@ -133,6 +130,9 @@ export default {
         ]),
         disableLink(e) {
             e.preventDefault();
+        },
+        showMenu() {
+            document.querySelector('.catalogue-filter').classList.toggle('catalogue-filter--show');
         }
     },
     async mounted() {
@@ -144,8 +144,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../styles/scroll';
+
 .catalogue {
-    min-height: 100%;
+    max-height: 100vh;;
+    height: 100%;
     display: flex;
     flex-direction: column;
     max-width: 1980px;
@@ -157,11 +160,6 @@ export default {
     align-items: center;
     padding: 0 20px;
     border-bottom: 1px solid #d3d3d3;
-    flex: 0 0 auto;
-}
-.footer__wrapper {
-    padding: 0 20px;
-    flex: 0 0 auto;
 }
 .header-search {
     margin-left: 23%;
@@ -199,8 +197,8 @@ export default {
 }
 .catalogue-body {
     position: relative;
-    flex: 1 0 auto;
     display: flex;
+    overflow: hidden;
 }
 .catalogue-wrapper {
     display: flex;
@@ -211,14 +209,11 @@ export default {
     padding-top: 5px;
     padding-right: 15px;
     min-width: 290px;
-    height: 100%;
+    height: fit-content;
     border-right: 1px solid #ebebeb;
     color: #2e3d4c;
     text-align: left;
-    background-image: url(../assets/img/img-footer7.png);
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: contain;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 .return-index__button {
     text-decoration: none;
@@ -255,6 +250,12 @@ export default {
 .catalogue-city {
     font-size: 12px;
     font-weight: 500;
+}
+.catalogue__list {
+    background-color: rgba(255,255,255, .9);;
+    max-height: 205px;
+    overflow-y: auto;
+    @extend %scroll;
 }
 .catalogue__list-header {
     font-size: 16px;
@@ -295,9 +296,6 @@ export default {
         font-weight: 500;
     }
 }
-.catalogue-filter__list {
-    margin-bottom: 420px;
-}
 .preloader {
     position: absolute;
     left: 0;
@@ -310,9 +308,11 @@ export default {
         display: flex;
     }
 }
+.catalogue__elements {
+    padding-bottom: 40px;
+}
 .catalogue__breadcrumps {
-    padding-top: 20px;
-    padding-left: 25px;
+    padding: 40px 5px 5px 25px;
 }
 .breadcrumps {
     list-style: none;
@@ -340,5 +340,83 @@ export default {
 .catalogue-coupons {
     width: 100%;
     height: 100%;
+}
+.girl-img {
+    position: fixed;
+    bottom: 0;
+    z-index: -1;
+}
+.catalogue-filter__open-button {
+    width: 25px;  /* ширина в два раза меньше высоты, иначе получится полуовал */
+    height: 50px;
+    border: 2px solid #34a136;
+    border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+    background: #49cd4b;
+    position: absolute;
+    top: 40px;
+    right: -25px;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 44px;
+    text-shadow: 0px 0px 13px #0f1310;
+    color: rgb(227, 255, 227);
+    display: none;
+}
+/*-- media --*/ 
+@media (max-height: 800px) {
+    .girl-img {
+        width: 300px;
+    }
+}
+@media (max-height: 675px) {
+    .girl-img {
+        width: 220px;
+    }
+}
+@media (max-height: 580px) {
+    .girl-img {
+        display: none;
+    }
+}
+@media (max-width: 1367px) {
+    .girl-img {
+        width: 250px;
+    }
+//    .catalogue-filter {
+//        position: absolute;
+//         background: white;
+//         z-index: 2;
+//         height: 100%;
+//         transform: translateX(-100%);
+//         border-right: 1px solid #123a0a;
+//         padding-right: 0;
+//         padding-bottom: 125px;
+//         margin-left: -20px;
+//         transition: transform .5s;
+//         &--show {
+//             transform: translateX(0);
+//             margin-left: 0;
+//         }
+//     }
+
+} 
+
+@media (max-width: 1200px) {
+    .girl-img {
+        display: none;
+    }
+    .catalogue-filter__list {
+        height: 100%;
+        
+    }
+    .catalogue__list {
+        height: 100%;
+        max-height: unset;
+    }
+    .catalogue-filter {
+        background: white;
+        height: 100%;
+        padding-bottom: 125px;
+    }
 }
 </style>

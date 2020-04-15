@@ -213,7 +213,6 @@ export default {
             }
         },
         submit() {
-            console.log('submit!')
             this.$v.$touch()
             if (this.$v.$invalid) {
                 console.log('Error')
@@ -400,7 +399,6 @@ export default {
         display: none;
     }
     &:focus {
-        background-color: rgb(226, 255, 218);
         &::placeholder {
             font-size: 0;
         }

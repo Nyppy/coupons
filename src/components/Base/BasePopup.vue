@@ -1,11 +1,11 @@
 <template>
     <div class="popup" :class="{'popup--active': getPopupState}">
         <div class="popup__inner">
-            <img class="popup___image" src="../../assets/img/popup-img.jpg" alt="">
+            <img class="popup___image" src="../../assets/img/coupon-img.jpg" alt="">
             <div class="popup-price__wrapper">
-                <div class="popup-sale">Скидка 25%</div>
+                <div class="popup-sale">Скидка {{getCurrentCoupon.price_sale}}</div>
                 <!-- Тут должна быть суть скидки -->
-                <div class="popup-price"> <span>за</span>  {{getCurrentCoupon.price}}</div>
+                <div class="popup-price"> <span>за</span>  {{getCurrentCoupon.price_service == 0 ? "Free" : getCurrentCoupon.price_service}}</div>
             </div>
             <div class="popup-name">{{getCurrentCoupon.name}}</div>
             <div class="popup-validity">{{getTimer(getCurrentCoupon.end_data)}}</div>
@@ -21,7 +21,7 @@
             </div>
             <div class="popup__buttons">
                 <button class="popup__return-button" @click="unsetScroll(); showPopup(false)">Вернуться</button>
-                <router-link class="popup__buy-button" to="/check-payment-method">Приобрести</router-link>
+                <button class="popup__buy-button" @click="goToPayPage()">Приобрести</button>
             </div>
         </div> 
     </div>
@@ -29,6 +29,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import router from '../../router';
 
 
 export default {
@@ -56,6 +57,10 @@ export default {
             let timestr = "Осталось: " + timer + " д. " + thour + " ч. " + tmin + " м. " + tsec + " с.";
             return timestr;
         },
+        goToPayPage() {
+            this.unsetScroll();
+            router.push({ name: 'paymethods'})
+        }
     }
 }
 </script>
@@ -73,6 +78,7 @@ export default {
     display: none;
     &--active {
         display: flex;
+        z-index: 9;
     }
 }
 .popup__inner {
@@ -134,15 +140,21 @@ export default {
     padding: 10px 5px;
     border-radius: 7px;
     outline: none;
+    border: none;
     cursor: pointer;
+    transition: all 2s;
 }
 .popup__return-button {
-    background-color: #2e3d4c;
-    border: none;
+    background: #2e3d4c;
     margin-right: 10px;
+    &:hover {
+        background: #515e69;
+    }
 }
 .popup__buy-button {
     background: linear-gradient( -13deg, rgb(64,196,67) 0%, rgb(85,242,89) 100%);
-    text-decoration: none;
+    &:hover {
+        background: linear-gradient( -13deg, rgb(85,242,89) 0%, rgb(64,196,67) 100%);
+    }
 }
 </style>

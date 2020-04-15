@@ -117,6 +117,7 @@ export default {
     line-height: 42px;
     font-weight: 700;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 .payments__info-link {
     display: inline-block;
