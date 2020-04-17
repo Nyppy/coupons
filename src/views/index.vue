@@ -1,69 +1,71 @@
 <template>
-  <div>
-    <div class="container">
-      <header>
-        <div class="Left_menu">
-          <div class="logo">
-            <img src="~@/assets/img/coupons_logo.svg" alt="#" />
-          </div>
-          <div class="sorting">
-            <p>Сортировка</p>
-            <form action>
-              <div class="form_info">
-                <img src="~@/assets/img/badges with registration/language.png" alt />
-                <select name="country" class="country">
-                  <option>Выберите язык</option>
-                  <option value="Россия">Россия</option>
-                  <option value="Украина">Украина</option>
-                  <option value="Беларусь">Беларусь</option>
-                </select>
-              </div>
-              <div class="form_info">
-                <img src="~@/assets/img/badges with registration/world.png" alt />
-                <select name="country" class="country">
-                  <option>Выберите страну</option>
-                  <option value="Россия">Россия</option>
-                  <option value="Украина">Украина</option>
-                  <option value="Беларусь">Беларусь</option>
-                </select>
-              </div>
-              <div class="form_info">
-                <img src="~@/assets/img/badges with registration/urban.png" alt />
-                <select name="country" class="country">
-                  <option>Выберите город</option>
-                  <option value="Россия">Россия</option>
-                  <option value="Украина">Украина</option>
-                  <option value="Беларусь">Беларусь</option>
-                </select>
-              </div>
-            </form>
-            <button class="Button">Посмотреть купоны</button>
-          </div>
-        </div>
-        <div class="right_menu">
-          <div class="slid1">
-            <img src="~@/assets/img/img-footer6.png" alt />
-            <div class="text">
-              <p>Лучшие скидки во время
-              <br />вашего путешествия.<p/>
+  <div class="start-page">
+    <div class="start-page__wrapper">
+      <div class="container">
+        <header>
+          <div class="Left_menu">
+            <div class="logo">
+              <img src="~@/assets/img/coupons_logo.svg" alt="#" />
+            </div>
+            <div class="sorting">
+              <p>Сортировка</p>
+              <form action>
+                <div class="form_info">
+                  <img src="~@/assets/img/badges with registration/language.png" alt />
+                  <select name="country" class="country">
+                    <option>Выберите язык</option>
+                    <option value="Россия">Россия</option>
+                    <option value="Украина">Украина</option>
+                    <option value="Беларусь">Беларусь</option>
+                  </select>
+                </div>
+                <div class="form_info">
+                  <img src="~@/assets/img/badges with registration/world.png" alt />
+                  <select name="country" class="country">
+                    <option>Выберите страну</option>
+                    <option value="Россия">Россия</option>
+                    <option value="Украина">Украина</option>
+                    <option value="Беларусь">Беларусь</option>
+                  </select>
+                </div>
+                <div class="form_info">
+                  <img src="~@/assets/img/badges with registration/urban.png" alt />
+                  <select name="country" class="country">
+                    <option>Выберите город</option>
+                    <option value="Россия">Россия</option>
+                    <option value="Украина">Украина</option>
+                    <option value="Беларусь">Беларусь</option>
+                  </select>
+                </div>
+              </form>
+              <button class="Button">Посмотреть купоны</button>
             </div>
           </div>
-          <!-- <div class="slid2">
-            <img src="~@/assets/img/img-footer4.png" alt />
-            <div class="text">
-              <p>Экстримальные ощущения
-              <br />или тихий отдых.</p>
+          <div class="right_menu">
+            <div class="slid1">
+              <img src="~@/assets/img/img-footer6.png" alt />
+              <div class="text">
+                <p>Лучшие скидки во время
+                <br />вашего путешествия.<p/>
+              </div>
             </div>
-          </div>
-          <div class="slid3">
-            <img src="~@/assets/img/img-footer5.png" alt />
-            <div class="text">
-              <p>Получите максимум эмоций
-              <br />от отдыха с нашими купонами.</p>
+            <!-- <div class="slid2">
+              <img src="~@/assets/img/img-footer4.png" alt />
+              <div class="text">
+                <p>Экстримальные ощущения
+                <br />или тихий отдых.</p>
+              </div>
             </div>
-          </div> -->
-        </div> 
-      </header>
+            <div class="slid3">
+              <img src="~@/assets/img/img-footer5.png" alt />
+              <div class="text">
+                <p>Получите максимум эмоций
+                <br />от отдыха с нашими купонами.</p>
+              </div>
+            </div> -->
+          </div> 
+        </header>
+      </div>
     </div>
     <div class="footer__wrapper">
         <div class="container">
@@ -169,7 +171,6 @@ header {
 
 .sorting p {
   color: #2e3d4c;
-  font-family: Verdana, Geneva, sans-serif;
   font-size: 24px;
   font-weight: bold;
   line-height: 30px;
@@ -178,7 +179,6 @@ header {
 .country {
   width: 470px;
   color: #817e7e;
-  font-family: "Gotham Pro";
   font-size: 18px;
   font-weight: bold;
   line-height: 30px;
@@ -196,19 +196,22 @@ header {
 }
 
 .Button {
-  margin-top: 15px;
-  padding: 5px 27px;
-  border-radius: 6px;
-  background-color: #44cd48;
-  color: white;
-  font-family: "Gotham Pro";
+  width: 221px;
   font-size: 16px;
-  font-weight: bold;
-  line-height: 30px;
-  border: 0;
+  color: #fff;
+  font-weight: 900;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient( -13deg, rgb(64,196,67) 0%, rgb(85,242,89) 100%);
+  transition: all .8s;
 }
 
-@media (max-width: 1040px) {
+.Button:hover {
+  background: linear-gradient( -13deg, rgb(85,242,89) 0%, rgb(64,196,67) 100%);
+}
+
+/* @media (max-width: 1040px) {
     .main {
         padding: 10px 0;
     }
@@ -273,9 +276,9 @@ header {
         /* &::after {
             display: none;
         } */
-    }
-  }
-@media (max-width: 630px) {
+    /* }
+  } */
+/* @media (max-width: 630px) {
     .payments__info-inner {
         padding-right: 0;
     }
@@ -284,5 +287,5 @@ header {
     .payments__info-title {
         margin-top: 15px;
     }
-}
+} */
 </style>
