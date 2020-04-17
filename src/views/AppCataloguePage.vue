@@ -33,7 +33,7 @@
                                     v-for="item in getCategories" 
                                     :key="item.id"
                                     :id="item.id"
-                                    @click="allCoupons({'category': item})">
+                                    @click="allCoupons({'category': item}); toogleMenu()">
                                     <img class="catalogue__list-img" src="../assets/img/fork.png" alt="">
                                     <span class="catalogue__list-item-name" >{{item.name}}</span>
                                     <span 
@@ -53,7 +53,7 @@
                             <li class="breadcrumps__item">
                                 <span class="breadcrumps__text">Категории /</span>
                             </li>
-                            <li class="breadcrumps__item" @click.capture="disableLink($event)">
+                            <li class="breadcrumps__item">
                                 <div class="breadcrumps__text">
                                     <span class="breadcrumps__text breadcrumps__text--active">{{getCurrentCategory.name}} </span>
                                     <span class="breadcrumps__item-counter">({{currentCategoryCountMessage}})</span>
@@ -122,9 +122,6 @@ export default {
             'allCategories',
             'allCoupons'
         ]),
-        disableLink(e) {
-            e.preventDefault();
-        },
         toogleMenu() {
             document.querySelector('.catalogue-filter').classList.toggle('catalogue-filter--show');
         }
@@ -204,11 +201,11 @@ export default {
     padding-top: 5px;
     padding-right: 15px;
     min-width: 290px;
-    height: fit-content;
+    height: 100%;
     border-right: 1px solid #ebebeb;
     color: #2e3d4c;
     text-align: left;
-    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 3;
 }
 .return-index__button {
     text-decoration: none;
@@ -305,6 +302,7 @@ export default {
 }
 .catalogue__elements {
     padding-bottom: 65px;
+    z-index: 2;
 }
 .catalogue__breadcrumps {
     padding: 40px 5px 5px 25px;
@@ -339,29 +337,30 @@ export default {
 .girl-img {
     position: fixed;
     bottom: 0;
-    z-index: -1;
 }
 .catalogue-filter__open-button {
     width: 25px;  /* ширина в два раза меньше высоты, иначе получится полуовал */
     height: 50px;
-    border: 2px solid #34a136;
+    border: 2px solid #49cd4b;
     border-radius: 0 100% 100% 0 / 0 50% 50% 0;
     background: #49cd4b;
     position: absolute;
     top: 40px;
-    right: -25px;
+    right: -27px;
     cursor: pointer;
     font-size: 20px;
     line-height: 44px;
     text-shadow: 0px 0px 13px #0f1310;
+    overflow: hidden;
     color: rgb(227, 255, 227);
     display: none;
-    transition: all .5s;
+    transition: all .2s;
     &:hover {
-        top: 38px;
-        right: -26px;
-        width: 26px;
-        height: 52px;
+        // top: 38px;
+        // right: -26px;
+        // width: 26px;
+        // height: 52px;
+        transform: scale(1.05); 
     }
 }
 .catalogue-filter__close-button {
@@ -446,7 +445,6 @@ export default {
 @media (max-width: 1023px) {
    .catalogue-filter {
         position: absolute;
-        z-index: 2;
         margin-left: -20px;
         transform: translateX(-100%);
         border-right: 2px solid #34a136;

@@ -23,6 +23,9 @@
                 </div>
             </div>  
         </div>
+        <a href="https://jscorp.ru/red.html" class="jscorp-link" target="_blank" style="background-color: #44cd48;">
+            <img src="jscorp-link_logo.png" alt="JS">  
+        </a>
     </div>
 </template>
 
@@ -72,8 +75,9 @@
 
 <style lang="scss" scoped>
 .footer {
-    padding-bottom: 40px;
+    padding-bottom: 45px;
     margin-top: 50px;
+    position: relative;
 }
 .footer__nav {
     display: flex;
@@ -127,12 +131,30 @@
 .payment img + img {
     margin-left: 40px;
 }
-/* -- media -- */
-@media (max-width: 1440px) {
-    .footer {
-        padding-bottom: 20px;
-    }
+/* Logo */
+
+.jscorp-link {  
+  width: 70px;  
+  height: 60px;  
+  cursor: pointer;  
+  transition: all 0.3s ease;  
+  display: block;  
+  position: absolute;  
+  bottom: 0px;  
+  right: 40px;
+  padding-top: 17px; 
+}  
+.jscorp-link img {  
+  width: 75%;  
+  display: block;  
+  margin: auto; 
+}  
+.jscorp-link:hover {  
+  height: 70px; 
 }
+
+
+/* -- media -- */
 @media (max-width: 1040px) {
     .footer {
         margin-top: 25px;
@@ -184,6 +206,9 @@
         margin-top: 20px;
     }
     @media (max-width: 600px) {
+        .footer {
+            padding-bottom: 70px;
+        }
         .footer__inner {
             display: block;
         }
@@ -196,6 +221,11 @@
         }
         .payment {
             margin: 10px 0;
+        }
+        .jscorp-link {
+            left: 0;
+            right: 0;
+            margin: 0 auto;
         }
     }
 }
