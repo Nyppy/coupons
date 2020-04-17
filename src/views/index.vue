@@ -118,28 +118,22 @@ new Vue ({
 </script>
 
 <style scoped>
+
 .container {
-  min-width: 1230px;
+  max-width: 1230px;
   padding: 0 15px;
   margin: 0 auto;
 }
 
 header {
   display: flex;
-  margin-top: 135px;
+  margin-top: 100px;
 }
 
 .right_menu {
-  margin-left: 170px;
+flex-basis: 50%;
+margin-left: 40px;
 }
-
-/* .slid2 {
-  display: none;
-}
-
-.slid3 {
-  display: none;
-} */
 
 .text {
   padding-top: 40px;
@@ -151,22 +145,25 @@ header {
 }
 
 .Left_menu {
-  width: 550px;
+  flex-basis: 50%;
   padding-right: 70px;
   border-right: 1px solid #dadada;
 }
 
 .logo {
-  width: 450px;
-  height: 100px;
-  margin-left: 70px;
+
+  text-align: left;
+}
+
+.logo img {
+  max-width: 450px;
+  width: 100%;
+  height: auto;
 }
 
 .sorting {
   margin-top: 40px;
-  width: 450px;
   text-align: left;
-  margin-left: 70px;
 }
 
 .sorting p {
@@ -177,10 +174,10 @@ header {
 }
 
 .country {
-  width: 470px;
+  width: 100%;
   color: #817e7e;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 600px;
   line-height: 30px;
   border: 0;
   margin-left: 15px;
@@ -189,7 +186,8 @@ header {
 
 .form_info {
   display: flex;
-  width: 470px;
+  max-width: 470px;
+  width: 100%;
   padding-bottom: 17px;
   margin-bottom: 15px;
   border-bottom: 1.5px solid #dadada;
@@ -209,6 +207,30 @@ header {
 
 .Button:hover {
   background: linear-gradient( -13deg, rgb(85,242,89) 0%, rgb(64,196,67) 100%);
+}
+
+@media screen and (max-width: 720px) {
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+  .right_menu {
+
+    margin-top: 40px;
+  }
+  .Left_menu {
+  border-right: none;
+}
+.form_info {
+  display: flex;
+  max-width: 470px;
+  width: 100%;
+
+}
+
+
 }
 
 /* @media (max-width: 1040px) {
