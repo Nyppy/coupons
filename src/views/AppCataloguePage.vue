@@ -1,16 +1,41 @@
 <template>
     <div class="catalogue">
         <div class="header-wrapper">
-            <header-elem></header-elem>
+            <div class="header-logo__wrapper">
+                <div class="header-logo__component">
+                    <header-elem></header-elem>
+                </div>
+                <div class="header-minlogo__inner">
+                    <router-link to="/">
+                        <img class="header-minlogo__image" src="../assets/img/coupons_logo_min.svg" alt="">
+                    </router-link>
+                </div>
+            </div>
             <div class="header-search">
                 <div class="header-search__form">
-                    <input class="header-search__input" type="text" placeholder="search">
-                    <button class="header-search__button"></button>
+                    <form class="header-search__form-inner" action="">
+                        <button class="header-search__button-loupe"></button>
+                        <input 
+                            class="header-search__input" 
+                            type="text" 
+                            placeholder="search" 
+                            @focus="toogleSearchForm()"
+                            @blur="toogleSearchForm()">
+                        <button class="header-search__button-submit" type="submit">Применить</button>
+                    </form>
                 </div>
                 <div class="header-search__result">
                     <ul class="header-search__result-list">
                         <li class="header-search__result-elem"></li>
                     </ul>
+                </div>
+            </div>
+            <div class="header__options">
+                <div class="header-qrcode">
+                    <img class="header-qrcode__image" src="../assets/img/qr-code.svg" alt="qr">
+                </div>
+                <div class="header-menu" @click="toogleMenu()">
+                    <img class="header-menu__button" src="../assets/img/menu.svg" alt="menu">
                 </div>
             </div>
         </div>
@@ -45,7 +70,7 @@
                         </div>
                     </div>
                     <div class="catalogue-filter__close-button" @click="toogleMenu()"></div>
-                    <div class="catalogue-filter__open-button" @click="toogleMenu()">&#9658;</div>
+                    <!-- <div class="catalogue-filter__open-button" @click="toogleMenu()">&#9658;</div> -->
                 </aside>  
                 <main class="catalogue__elements">
                     <div class="catalogue__breadcrumps">
@@ -124,6 +149,12 @@ export default {
         ]),
         toogleMenu() {
             document.querySelector('.catalogue-filter').classList.toggle('catalogue-filter--show');
+        },
+        toogleSearchForm() {
+            if (window.innerWidth < 1025) {
+                document.querySelector('.header-search').classList.toggle('header-search--active');
+                document.querySelector('.header-search__form').classList.toggle('header-search__form--active');
+            }   
         }
     },
     async mounted() {
@@ -149,38 +180,99 @@ export default {
 .header-wrapper {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 20px;
     border-bottom: 1px solid #d3d3d3;
+    position: relative;
+}
+.header-minlogo__inner {
+    padding: 15px 0;
+    display: none;
+}
+.header__options {
+    display: flex;
+    padding-right: 25px;
+}
+.header-qrcode,
+.header-menu {
+    margin-right: 25px;
+    cursor: pointer;
+}
+.header-qrcode__image,
+.header-menu__button {
+    width: 40px;
+    height: 40px;
 }
 .header-search {
-    margin-left: 23%;
+    &__form-inner {
+        display: flex;
+        align-items: center;
+    }
     &__input {
+        flex-grow: 1;
         font-size: 18px;
         line-height: 28px;
-        padding: 5px 10px 5px 30px;
+        padding: 5px 10px 5px 10px;
         outline: none;
         border: none;
         &::placeholder {
             color: #cfcfcf;
         }
+        &:focus + .header-search__button-submit {
+            display: block;
+        }
     }
     &__form {
         position: relative;
+        &--active {
+            width: 100%;
+            padding-bottom: 7px;
+            padding-left: 5px;
+            border-bottom: 1px solid rgb(149, 149, 149);
+        }
     }
-    &__button {
+    &__button-loupe {
+        flex-grow: 0;
         width: 24px;
         height: 24px;
         background-image: url(../assets/img/search.png);
         background-repeat: no-repeat;
         background-size: cover;
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
         background-color: transparent;
         border: none;
         outline: none;
         cursor: pointer;
+    }
+    &__button-submit {
+        flex-grow: 0;
+        display: none;
+        width: 110px;
+        height: 30px;
+        padding: 0 10px;
+        background-color: #5AF153;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 30px;
+        text-align: center;
+        border: none;
+        border-radius: 12px;
+        outline: none;
+        cursor: pointer;
+        transition: background-color .5s;
+        &:hover {
+            background-color: rgb(80, 194, 74);
+        }
+    }
+    &--active {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        padding: 0px 10px;
+        background-color: white;
+        display: flex;
+        align-items: center;
     }
 }
 .header-search__result {
@@ -296,6 +388,7 @@ export default {
     height: 100%;
     background: white;
     display: none;
+    z-index: 8;
     &--active {
         display: flex;
     }
@@ -338,31 +431,31 @@ export default {
     position: fixed;
     bottom: 0;
 }
-.catalogue-filter__open-button {
-    width: 25px;  /* ширина в два раза меньше высоты, иначе получится полуовал */
-    height: 50px;
-    border: 2px solid #49cd4b;
-    border-radius: 0 100% 100% 0 / 0 50% 50% 0;
-    background: #49cd4b;
-    position: absolute;
-    top: 40px;
-    right: -27px;
-    cursor: pointer;
-    font-size: 20px;
-    line-height: 44px;
-    text-shadow: 0px 0px 13px #0f1310;
-    overflow: hidden;
-    color: rgb(227, 255, 227);
-    display: none;
-    transition: all .2s;
-    &:hover {
-        // top: 38px;
-        // right: -26px;
-        // width: 26px;
-        // height: 52px;
-        transform: scale(1.05); 
-    }
-}
+// .catalogue-filter__open-button {
+//     width: 25px;  /* ширина в два раза меньше высоты, иначе получится полуовал */
+//     height: 50px;
+//     border: 2px solid #49cd4b;
+//     border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+//     background: #49cd4b;
+//     position: absolute;
+//     top: 40px;
+//     right: -27px;
+//     cursor: pointer;
+//     font-size: 20px;
+//     line-height: 44px;
+//     text-shadow: 0px 0px 13px #0f1310;
+//     overflow: hidden;
+//     color: rgb(227, 255, 227);
+//     display: none;
+//     transition: all .2s;
+//     &:hover {
+//         // top: 38px;
+//         // right: -26px;
+//         // width: 26px;
+//         // height: 52px;
+//         transform: scale(1.05); 
+//     }
+// }
 .catalogue-filter__close-button {
     position: absolute;
     top: 10px;
@@ -385,7 +478,7 @@ export default {
         top: 50%;
         left: 0;
         margin-top: -1px;
-        background: #34a136;
+        background: #000;
     }
     &::before {
         transform: rotate(45deg);
@@ -443,6 +536,15 @@ export default {
     }
 }
 @media (max-width: 1023px) {
+    .header-logo__component {
+        display: none;
+    }
+    .header-minlogo__inner {
+        display: block;
+    }
+    .header__options {
+        padding-right: 0;
+    }
    .catalogue-filter {
         position: absolute;
         margin-left: -20px;
@@ -455,9 +557,9 @@ export default {
             padding-left: 20px;
         }
     }
-    .catalogue-filter__open-button {
-        display: block;
-    }
+    // .catalogue-filter__open-button {
+    //     display: block;
+    // }
     .catalogue-filter__close-button {
         display: inline-block;
     }
@@ -469,6 +571,10 @@ export default {
     }
 }
 @media (max-width: 700px) {
+    .header-qrcode,
+    .header-menu {
+        margin-right: 15px;
+    }
     .catalogue-wrapper {
         padding: 0 10px;
     }
@@ -480,6 +586,7 @@ export default {
     }
     .catalogue-filter {
         margin-left: -10px;
+        border-right: none;
         &--show {
             padding-left: 10px;
         }
@@ -495,6 +602,14 @@ export default {
         padding-bottom: 40px;
     }
 }
+@media (max-width: 600px) {
+    .header-search__input {
+        &:focus 
+        &:focus .header-search__form {
+            width: 100%;
+        }
+    }
+}
 @media (max-width: 550px) {
     .breadcrumps__text  {
         font-size: 14px;
@@ -504,13 +619,23 @@ export default {
     .breadcrumps__text  {
         font-size: 12px;
     }
-    .header-wrapper {
-        display: block;
+    .header-qrcode,
+    .header-menu {
+        margin-right: 10px;
+    }
+    .header-qrcode__image, .header-menu__button {
+        width: 30px;
+        height: 30px;
+    }
+    .header-minlogo__inner {
+        padding: 5px 0;
+    }
+    .header-minlogo__image {
+        width: 55px;
+        height: 35px;
     }
     .header-search {
-        width: 280px;
         margin: 0 auto;
-        border: 1px solid #d3d3d3;
         border-top-left-radius: 7px;
         border-top-right-radius: 7px;
         border-bottom: none;
@@ -521,7 +646,7 @@ export default {
         padding: 5px 5px 5px 12px;
         width: 90%;
     }
-    .header-search__button {
+    .header-search__button-loupe {
         left: 5px;
         width: 18px;
         height: 18px;
