@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="37.836" height="33.503" viewBox="0 0 37.836 33.503">
+  <g id="gps" transform="translate(-0.001 -17.007)">
+    <path id="Path_6" data-name="Path 6" d="M90.962,38.511a1.27,1.27,0,0,0,1.678,0c.3-.268,7.439-6.627,7.439-13.223a8.278,8.278,0,1,0-16.556,0C83.523,31.883,90.658,38.243,90.962,38.511ZM91.8,23.124a2.164,2.164,0,1,1-2.146,2.164A2.155,2.155,0,0,1,91.8,23.124Z" transform="translate(-72.882)" fill="#cecece"/>
+    <g id="Component_3_1" data-name="Component 3 – 1" transform="translate(2.829 34.225)">
+      <path id="Path_7" data-name="Path 7" d="M54.2,156.446l-.959-3.36a1.27,1.27,0,0,0-1.221-.921H45.172q-.371.552-.784,1.108a31.7,31.7,0,0,1-4.084,4.511,3.048,3.048,0,0,1-4.028,0,31.7,31.7,0,0,1-4.084-4.511q-.414-.557-.784-1.108H24.563a1.27,1.27,0,0,0-1.221.921l-1.143,4,25.546,4.679Z" transform="translate(-22.199 -152.164)" fill="#cecece"/>
+    </g>
+    <path id="Path_8" data-name="Path 8" d="M196.58,208.481l-2.45-8.586-12.155,10.2h13.384a1.269,1.269,0,0,0,1.221-1.618Z" transform="translate(-158.792 -159.589)" fill="#cecece"/>
+    <path id="Path_9" data-name="Path 9" d="M6.217,205.022l-3.878-.71L.049,212.335a1.27,1.27,0,0,0,1.221,1.618H6.217Z" transform="translate(0 -163.443)" fill="#cecece"/>
+    <path id="Path_10" data-name="Path 10" d="M62.746,212.445v8.605H75.17l6.189-5.2Z" transform="translate(-54.752 -170.54)" fill="#cecece"/>
+  </g>
+</svg>
