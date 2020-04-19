@@ -3,7 +3,7 @@
         <div class="footer__inner">
             <nav class="footer__nav">
                 <router-link class="footer__nav-link" to="">{{ $t('menu.about_us') }}</router-link>
-                <router-link class="footer__nav-link" to="">{{ $t('menu.place_coupon') }}</router-link>
+                <router-link class="footer__nav-link" to="/place-your-coupon">{{ $t('menu.place_coupon') }}</router-link>
                 <router-link class="footer__nav-link" to="">{{ $t('menu.affiliate_program') }}</router-link>
                 <router-link class="footer__nav-link" to="">{{ $t('menu.privacy_policy') }}</router-link>
                 <router-link class="footer__nav-link" to="">{{ $t('menu.terms_of_use') }}</router-link>
