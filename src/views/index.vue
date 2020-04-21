@@ -217,18 +217,16 @@ margin-left: 40px;
     justify-content: center;
   }
   .right_menu {
-
     margin-top: 40px;
   }
   .Left_menu {
   border-right: none;
-}
-.form_info {
-  display: flex;
-  max-width: 470px;
-  width: 100%;
-
-}
+  }
+  .form_info {
+    display: flex;
+    max-width: 470px;
+    width: 100%;
+  }
 
 
 }
