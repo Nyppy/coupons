@@ -496,7 +496,6 @@ export default {
   border: none;
   border-radius: 6px;
   background: linear-gradient( -13deg, rgb(64,196,67) 0%, rgb(85,242,89) 100%);
-  transition: all .8s;
   &:hover {
       background: linear-gradient( -13deg, rgb(85,242,89) 0%, rgb(64,196,67) 100%);
   }

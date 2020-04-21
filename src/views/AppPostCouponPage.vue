@@ -49,12 +49,15 @@
                                     </div>
                                     <div class="card-form__prices-right">
                                         <div class="card-form__image">
-                                            Choose
-                                            <input 
-                                                @change="previewThumbnail" 
-                                                class="card-form__image-input" 
-                                                name="thumbnail" 
-                                                type="file">
+                                            <label class="card-form__image-label">
+                                                <span class="plus">+</span>
+                                                <span class="card-form__image-text">Изображение</span>
+                                                <input 
+                                                    @change="previewThumbnail" 
+                                                    class="card-form__image-input" 
+                                                    name="thumbnail" 
+                                                    type="file">
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -205,7 +208,6 @@ export default {
         font-size: 24px;
         line-height: 30px;
         font-weight: 700;
-        color: #2e3d4c;
     }
 }
 /*input image*/
@@ -262,11 +264,17 @@ export default {
     &::after {
         content: '';
         position: absolute;
+        background-image: url(../assets/img/payments/question.svg);
+        background-repeat: no-repeat;
         right: 0;
         top: 50%;
+        width: 31px;
+        height: 31px;
         transform: translateY(-50%);
     }
 }
+
+
 /*red star*/
 .card-form__name, 
 .card-form__address,
@@ -285,6 +293,21 @@ export default {
         }
     }
 }
+.card-form__name {
+    &::after {
+        left: 375px;
+    }
+}
+.card-form__address {
+    &::after {
+        left: 320px;
+    } 
+}
+.card-form__descr {
+    &::after {
+        left: 355px;
+    }
+}
 
 .card-form__name-input, 
 .card-form__address-input,
@@ -293,7 +316,7 @@ export default {
 .card-form__price-input {
     width: 100%;
     border: 0;
-    padding: 25px 10px 15px 55px;
+    padding: 22px 10px 17px 55px;
     font-size: 18px;
     font-weight: 400;
     outline: none;
@@ -310,67 +333,140 @@ export default {
         }
     }
 }
-
-
-.coupon-preview {
-    flex-basis: 50%;
+.card-form__sale-input {
+    &::placeholder {
+        color: red;
+    }
 }
-// .Image-input__image-wrapper {
-//     flex-basis: 80%;
-//     height: 150px;
-//     flex: 2.5;
-//     border-radius: 1px;
-//     margin-right: 10px;
-//     overflow-y: hidden;
-//     border-radius: 1px;
-//     background: #eee;
-//     justify-content: center;
-//     align-items: center;
-//     display: flex;
-// }
-
-
-// .Image-input__image {
-//     max-width: 100%;
-//     border-radius: 1px;
-// }
-
+.card-form__prices {
+    display: flex;
+    justify-content: space-between;
+}
+.card-form__prices-left {
+    flex-basis: 43%;
+}
+.card-form__prices-right {
+    flex-basis: 52%;
+    padding-top: 10px;
+}
 .card-form__image {
     overflow: hidden;
-    position: relative;
-    background: #eee;
-    border-radius: 1px;
-    float: left;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgba(0,0,0,0.2);
+    border-radius: 15px;
+    border: 1px solid #707070;
+    height: 100%;
+    color: #CECECE;
     transition: 0.4s background;
+    &-label {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        height: 100%;
+        text-align: center;
+    }
+    &-text {
+        font-size: 18px;
+        font-weight: 400;
+    }
+    &:hover {
+        background: #e0e0e0;
+    }
 }
-
-.card-form__image:hover {
-    background: #e0e0e0;
+.plus {
+    font-size: 72px;
+    line-height: 72px;
+    display: block;
 }
-
-
 .card-form__image-input {
     cursor: inherit;
     display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     min-height: 100%;
     opacity: 0;
     text-align: right;
     cursor: pointer;
 }
+.card-form__summ {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 25px 0;
+}
+.card-form__footer {
+    display: flex;
+    align-items: center;
+}
+.card-form__submit {
+    margin-right: 15px;
+}
+.submit-button {
+    width: 221px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient( -13deg, rgb(64,196,67) 0%, rgb(85,242,89) 100%);
+    &:hover {
+        background: linear-gradient( -13deg, rgb(85,242,89) 0%, rgb(64,196,67) 100%);
+    }
+}
+.card-form__agree {
+    position: relative;
+    &::after {
+        content: '*';
+        font-size: 10px;
+        font-weight: 700;
+        color: red;
+        position: absolute;
+        top: 11px;
+        left: 220px;
+    }
+}
+.card-form__agree-input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    &:checked + .agree-checkbox__label::before {
+        background-image: url(../assets/img/payments/checkmark.png);
+    }
+}
+
+.agree-checkbox__label {
+    font-size: 10px;
+    font-weight: 400;
+    color: #696969;
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        flex-grow: 0;
+        border: 1px solid #2e3d4c;
+        border-radius: 5px;
+        margin-right: 10px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 16px;
+    }
+    & .policy {
+        color: #44cd48;
+    }
+}
+
 .coupon-preview {
+    flex-basis: 50%;
     &__image {
-        
-        
         width: 100%;
         max-height: 100%;
         border-radius: 7px;
-        
-        
         &-wrapper {
             background-color: #707070;
             max-width: 370px;
