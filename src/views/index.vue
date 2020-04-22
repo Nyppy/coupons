@@ -69,22 +69,30 @@
     </div>
     <div class="footer__wrapper">
         <div class="container">
-            <footer-elem></footer-elem>
+            <footer-elem 
+              :local="$i18n.locale"
+            ></footer-elem>
         </div>
     </div>
   </div>
 </template>
 
-
 <script>
+
 import FooterElem from "@/components/TheFooter";
 /*import Slick from 'vue-slick';*/
 /*import Vue from 'vue'*/
 
 export default {
   components: {
+
     FooterElem
-  }
+  },
+  data () {
+    return { 
+      langs: ['ru', 'en'],
+    }
+  },
 };
  /*
 new Vue ({
@@ -94,28 +102,74 @@ new Vue ({
     data() {
         return {
             slickOptions: {
-                slidesToShow: 3,
+                slidesToShow: 1,
+                // Any other options that can be got from plugin documentation
             },
         };
     },
-
-    methods: {
+  methods: {
         next() {
             this.$refs.slick.next();
         },
- 
+
         prev() {
             this.$refs.slick.prev();
         },
- 
+
         reInit() {
+            // Helpful if you have to deal with v-for to update dynamic lists
             this.$nextTick(() => {
                 this.$refs.slick.reSlick();
             });
         },
-    },
-}); */
+
+        
+    }
+}*/
 </script>
+
+
+<i18n>
+  { 
+    "ru": {
+      "ru": "Русский",
+      "en": "English",
+      "sorted": "Сортировка",
+      "view_coupons": "Посмотреть купоны",
+      "text_the_best": {
+        "text1": "Лучшие скидки во время",
+        "text2": "вашего путешествия"
+      },
+      "select_a_country": "Выберите страну",
+      "menu": {
+        "about_us": "О нас",
+        "place_coupon": "Разместить купон",
+        "affiliate_program": "Партнерская программа",
+        "privacy_policy": "Политика конфиденциальности",
+        "terms_of_use": "Условия использования"
+      }
+    },
+    "en": {
+      "en": "English",
+      "ru": "Russian",
+      "sorted": "Sorting",
+      "view_coupons": "View coupons",
+      "text_the_best": {
+        "text1": "Best discounts during",
+        "text2": "your trip"
+      },
+      "select_a_country": "Select a country",
+      "menu": {
+        "about_us": "About us",
+        "place_coupon": "Place coupon",
+        "affiliate_program": "Affiliate program",
+        "privacy_policy": "Privacy policy",
+        "terms_of_use": "Terms_of_use"
+      }
+    }
+  }
+</i18n>
+
 
 <style scoped>
 
@@ -124,6 +178,7 @@ new Vue ({
   padding: 0 15px;
   margin: 0 auto;
 }
+
 
 header {
   display: flex;

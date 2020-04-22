@@ -1,31 +1,28 @@
 <template>
     <div class="coupons">
-        <div class="coupons__wrapper">
-            <ul class="coupons__list">
-                <li
-                    class="coupons__item"
-                    v-for="item in getCouponsList"
-                    :key="item.id"
-                    :id="item.id"
-                >
-                    <div class="coupons__item-inner">
-                        <div class="coupons__item-picture">
-                            <img class="coupons__item-image" src="../../assets/img/coupon-img.png" alt="">
-                            <span 
-                                class="coupons__item-price"
-                                :class="{'coupons__item-price--small': checkFont(item.price)}"
-                                >{{item.price}}</span>
-                            <span class="coupons__item-sale">Free</span>
-                        </div>
-                        <div class="coupons__item-title">{{item.name}}</div>
-                        <div class="coupons__item-validity">
-                            {{getTimer(item.end_data)}}
-                        </div>
-                        <div class="coupons__item-descr">{{item.summary}}</div>
+        <ul class="coupons__list">
+            <li
+                class="coupons__item"
+                v-for="item in getCouponsList"
+                :key="item.id"
+                :id="item.id"
+            >
+                <div class="coupons__item-inner" @click="changeCurrentCoupon(item); showPopup(true); dontScroll()">
+                    <div class="coupons__item-picture">
+                        <img class="coupons__item-image" src="../../assets/img/coupon-img.jpg" alt="">
+                        <span 
+                            class="coupons__item-sale"
+                            >{{item.price_sale}}</span>
+                        <span class="coupons__item-price">{{item.price_service == 0 ? "Free" : item.price_service}}</span>
                     </div>
-                </li>
-            </ul>
-        </div>
+                    <div class="coupons__item-title">{{item.name}}</div>
+                    <div class="coupons__item-validity">
+                        {{getTimer(item.end_data)}}
+                    </div>
+                    <div class="coupons__item-descr">{{item.summary}}</div>
+                </div>
+            </li>
+        </ul>
         <div class="loader" :class="{'loader--active': getLockStateCoupons}">
             <loader-elem/>
         </div>
@@ -34,7 +31,7 @@
 
 <script>
 import LoaderElem from './BasePreloader'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
     components: {
@@ -42,18 +39,15 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'getCategories',
             'getCouponsList',
-            'getCurrentCategory',
-            'getLockStateCoupons',
-            'getLockStateCategories'
+            'getLockStateCoupons'
         ])
     },
     methods: {
-        checkFont(price) {
-            if (price.length > 6 && !parseInt(price)) return true;
-            return false
-        },
+        ...mapActions([
+            'changeCurrentCoupon',
+            'showPopup'
+        ]),
         getTimer(end_date) {
             let timeend = new Date(end_date);
             let today = new Date();
@@ -64,16 +58,24 @@ export default {
             let thour = timer % 24; timer = Math.floor(timer/24);
             let timestr = "Осталось: " + timer + " д. " + thour + " ч. " + tmin + " м. " + tsec + " с.";
             return timestr;
+        },
+        dontScroll() {
+            document.body.style.overflow = 'hidden'
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../../styles/scroll';
+
 .coupons {
     position: relative;
-    width: 100%;
     height: 100%;
+    padding-left: 30px;
+    padding-top: 15px;
+    overflow-y: auto;
+    @extend %scroll;
     &__list {
         display: flex;
         flex-direction: row;
@@ -99,15 +101,14 @@ export default {
         }
         &-picture {
             position: relative;
-            width: 305px;
         }
         &-image {
-            width: 305px;
-            height: auto;
+            width: 100%;
+            max-width: 305px;
+            height: 145px;
             border-radius: 6px;
-            
         }
-        &-price {
+        &-sale {
             max-width: 170px;
             position: absolute;
             bottom: 14px;
@@ -121,13 +122,8 @@ export default {
             border-radius: 7px;
             color: #fff;
             padding: 0px 10px;
-            &--small {
-                font-size: 16px;
-                line-height: 16px;
-                padding: 6px 5px;
-            }
         }
-        &-sale {
+        &-price {
             position: absolute;
             top: 10px;
             left: -7px;
@@ -137,7 +133,6 @@ export default {
             background: linear-gradient( -13deg, rgb(64,196,67) 0%, rgb(85,242,89) 100%);
             height: 45px;
             border-radius: 7px;
-            color: #fff;
             padding: 0px 10px;
         }
         &-title {
@@ -171,6 +166,56 @@ export default {
     display: none;
     &--active {
         display: flex;
+    }
+}
+@media (max-width: 1700px) {
+    .coupons__item {
+        width: 33.33%;
+    }
+    .coupons__item-inner {
+        margin: 0 auto;
+    }
+}
+@media (max-width: 1367px) {
+    .coupons__item { 
+        width: 50%;
+    }
+}
+@media (max-width: 1023px) {
+    .coupons {
+        padding-left: 0;
+    }
+}
+@media (max-width: 700px) {
+    .coupons__item {
+        height: 240px;
+    }
+    .coupons__item-inner {
+        max-width: 260px;
+        width: 100%;
+    }
+    .coupons__item-image {
+        height: auto;
+    }
+}
+@media (max-width: 600px) { 
+    .coupons__item {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+    .coupons__item-inner {
+        max-width: 305px;
+    }
+}
+@media (max-width: 475px) { 
+    .coupons {
+        padding-top: 10px;
+    }
+}
+@media (max-width: 375px) { 
+    .coupons__item-inner {
+        max-width: 275px;
     }
 }
 </style>

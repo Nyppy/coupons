@@ -12,6 +12,7 @@ export default new Router ({
         },
         {
             path: "/check-payment-method",
+            name: "paymethods",
             component: () => import('./views/paymethods.vue')
         },
         {
@@ -26,6 +27,10 @@ export default new Router ({
         {
             path: "/coupons-catalogue",
             component: () => import('./views/AppCataloguePage.vue')
+        },
+        {
+            path: "/place-your-coupon",
+            component: () => import('./views/AppPostCouponPage.vue')
         }
     ]
 })

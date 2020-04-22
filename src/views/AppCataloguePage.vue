@@ -1,16 +1,41 @@
 <template>
     <div class="catalogue">
         <div class="header-wrapper">
-            <header-elem></header-elem>
+            <div class="header-logo__wrapper">
+                <div class="header-logo__component">
+                    <header-elem></header-elem>
+                </div>
+                <div class="header-minlogo__inner">
+                    <router-link to="/">
+                        <img class="header-minlogo__image" src="../assets/img/coupons_logo_min.svg" alt="">
+                    </router-link>
+                </div>
+            </div>
             <div class="header-search">
                 <div class="header-search__form">
-                    <input class="header-search__input" type="text" placeholder="search">
-                    <button class="header-search__button"></button>
+                    <form class="header-search__form-inner" action="">
+                        <button class="header-search__button-loupe"></button>
+                        <input 
+                            class="header-search__input" 
+                            type="text" 
+                            placeholder="search" 
+                            @focus="toogleSearchForm()"
+                            @blur="toogleSearchForm()">
+                        <button class="header-search__button-submit" type="submit">Применить</button>
+                    </form>
                 </div>
                 <div class="header-search__result">
                     <ul class="header-search__result-list">
                         <li class="header-search__result-elem"></li>
                     </ul>
+                </div>
+            </div>
+            <div class="header__options">
+                <div class="header-qrcode">
+                    <img class="header-qrcode__image" src="../assets/img/qr-code.svg" alt="qr">
+                </div>
+                <div class="header-menu" @click="toogleMenu()">
+                    <img class="header-menu__button" src="../assets/img/menu.svg" alt="menu">
                 </div>
             </div>
         </div>
@@ -33,7 +58,7 @@
                                     v-for="item in getCategories" 
                                     :key="item.id"
                                     :id="item.id"
-                                    @click="allCoupons({'category': item})">
+                                    @click="allCoupons({'category': item}); toogleMenu()">
                                     <img class="catalogue__list-img" src="../assets/img/fork.png" alt="">
                                     <span class="catalogue__list-item-name" >{{item.name}}</span>
                                     <span 
@@ -44,25 +69,20 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="catalogue-filter__close-button" @click="toogleMenu()"></div>
+                    <!-- <div class="catalogue-filter__open-button" @click="toogleMenu()">&#9658;</div> -->
                 </aside>  
                 <main class="catalogue__elements">
                     <div class="catalogue__breadcrumps">
                         <ul class="breadcrumps">
                             <li class="breadcrumps__item">
-                                <router-link class="breadcrumps__link" to="/">
-                                    <span>Купоны /</span>
-                                </router-link>
+                                <span class="breadcrumps__text">Категории /</span>
                             </li>
                             <li class="breadcrumps__item">
-                                <router-link class="breadcrumps__link" to="/">
-                                    <span>Категории /</span>
-                                </router-link>
-                            </li>
-                            <li class="breadcrumps__item" @click.capture="disableLink($event)">
-                                <router-link class="breadcrumps__link" to="/">
-                                    <span class="breadcrumps__link breadcrumps__link--active">{{getCurrentCategory.name}} </span>
+                                <div class="breadcrumps__text">
+                                    <span class="breadcrumps__text breadcrumps__text--active">{{getCurrentCategory.name}} </span>
                                     <span class="breadcrumps__item-counter">({{currentCategoryCountMessage}})</span>
-                                </router-link>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -76,17 +96,16 @@
                 <loader-elem></loader-elem>
             </div>
         </div>
-        <div class="footer__wrapper">
-            <footer-elem></footer-elem>
-        </div>
+        <img class="girl-img" src="../assets/img/img-footer7.png" alt="" >
+        <base-popup></base-popup>
     </div>
 </template>
 
 <script>
-import FooterElem from "../components/TheFooter"
 import HeaderElem from "../components/TheHeader"
 import LoaderElem from '../components/Base/BasePreloader'
 import BaseCoupons from '../components/Base/BaseCoupons'
+import BasePopup from '../components/Base/BasePopup'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -98,8 +117,8 @@ export default {
     components: {
         LoaderElem,
         HeaderElem,
-        FooterElem,
-        BaseCoupons
+        BaseCoupons,
+        BasePopup
     },
     computed: {
         ...mapGetters([
@@ -107,7 +126,8 @@ export default {
             'getCouponsList',
             'getCurrentCategory',
             'getLockStateCoupons',
-            'getLockStateCategories'
+            'getLockStateCategories',
+            'getPopupState'
         ]),
         currentCategoryCountMessage() {
             let message = '';
@@ -127,8 +147,14 @@ export default {
             'allCategories',
             'allCoupons'
         ]),
-        disableLink(e) {
-            e.preventDefault();
+        toogleMenu() {
+            document.querySelector('.catalogue-filter').classList.toggle('catalogue-filter--show');
+        },
+        toogleSearchForm() {
+            if (window.innerWidth < 1025) {
+                document.querySelector('.header-search').classList.toggle('header-search--active');
+                document.querySelector('.header-search__form').classList.toggle('header-search__form--active');
+            }   
         }
     },
     async mounted() {
@@ -140,54 +166,113 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../styles/scroll';
+
 .catalogue {
-    width: 100%;  
-    min-height: 100%;
+    max-height: 100vh;;
+    height: 100%;
     display: flex;
     flex-direction: column;
     max-width: 1980px;
     margin: 0 auto;
+    position: relative;
 }
 .header-wrapper {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 20px;
     border-bottom: 1px solid #d3d3d3;
-    flex: 0 0 auto;
+    position: relative;
 }
-.footer__wrapper {
-    padding: 0 20px;
-    flex: 0 0 auto;
+.header-minlogo__inner {
+    padding: 15px 0;
+    display: none;
+}
+.header__options {
+    display: flex;
+    padding-right: 25px;
+}
+.header-qrcode,
+.header-menu {
+    margin-right: 25px;
+    cursor: pointer;
+}
+.header-qrcode__image,
+.header-menu__button {
+    width: 40px;
+    height: 40px;
 }
 .header-search {
-    margin-left: 23%;
+    &__form-inner {
+        display: flex;
+        align-items: center;
+    }
     &__input {
+        flex-grow: 1;
         font-size: 18px;
         line-height: 28px;
-        padding: 5px 10px 5px 30px;
+        padding: 5px 10px 5px 10px;
         outline: none;
         border: none;
         &::placeholder {
             color: #cfcfcf;
         }
+        &:focus + .header-search__button-submit {
+            display: block;
+        }
     }
     &__form {
         position: relative;
+        &--active {
+            width: 100%;
+            padding-bottom: 7px;
+            padding-left: 5px;
+            border-bottom: 1px solid rgb(149, 149, 149);
+        }
     }
-    &__button {
+    &__button-loupe {
+        flex-grow: 0;
         width: 24px;
         height: 24px;
         background-image: url(../assets/img/search.png);
         background-repeat: no-repeat;
         background-size: cover;
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
         background-color: transparent;
         border: none;
         outline: none;
         cursor: pointer;
+    }
+    &__button-submit {
+        flex-grow: 0;
+        display: none;
+        width: 110px;
+        height: 30px;
+        padding: 0 10px;
+        background-color: #5AF153;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 30px;
+        text-align: center;
+        border: none;
+        border-radius: 12px;
+        outline: none;
+        cursor: pointer;
+        transition: background-color .5s;
+        &:hover {
+            background-color: rgb(80, 194, 74);
+        }
+    }
+    &--active {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        padding: 0px 10px;
+        background-color: white;
+        display: flex;
+        align-items: center;
     }
 }
 .header-search__result {
@@ -195,28 +280,24 @@ export default {
 }
 .catalogue-body {
     position: relative;
-    min-height: 75vh;
-    flex: 1 0 auto;
+    display: flex;
+    overflow: hidden;
+    height: 100%;
 }
 .catalogue-wrapper {
     display: flex;
     padding: 0 20px;
-    height: 100%;
 }
 .catalogue-filter {
     flex: 0 0 19%;
     padding-top: 5px;
     padding-right: 15px;
-    width: 19%;
     min-width: 290px;
     height: 100%;
     border-right: 1px solid #ebebeb;
     color: #2e3d4c;
     text-align: left;
-    background-image: url(../assets/img/img-footer7.png);
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: contain;
+    z-index: 3;
 }
 .return-index__button {
     text-decoration: none;
@@ -253,6 +334,12 @@ export default {
 .catalogue-city {
     font-size: 12px;
     font-weight: 500;
+}
+.catalogue__list {
+    background-color: rgba(255,255,255, .9);;
+    max-height: 205px;
+    overflow-y: auto;
+    @extend %scroll;
 }
 .catalogue__list-header {
     font-size: 16px;
@@ -293,9 +380,6 @@ export default {
         font-weight: 500;
     }
 }
-.catalogue-filter__list {
-    margin-bottom: 420px;
-}
 .preloader {
     position: absolute;
     left: 0;
@@ -304,18 +388,21 @@ export default {
     height: 100%;
     background: white;
     display: none;
+    z-index: 8;
     &--active {
         display: flex;
     }
 }
+.catalogue__elements {
+    padding-bottom: 65px;
+    z-index: 2;
+}
 .catalogue__breadcrumps {
-    padding-top: 20px;
-    padding-left: 25px;
+    padding: 40px 5px 5px 25px;
 }
 .breadcrumps {
     list-style: none;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     margin: 0;
     padding: 0;
@@ -325,7 +412,8 @@ export default {
             margin-left: 5px;
         }
     }
-    &__link {
+    &__text {
+        white-space: nowrap;
         font-size: 16px;
         font-weight: 600;
         color: #acacac;
@@ -335,13 +423,242 @@ export default {
         }
     }
 }
-.catalogue__elements {
-    width: 100%;
-}
 .catalogue-coupons {
     width: 100%;
     height: 100%;
-    padding-left: 30px;
-    padding-top: 20px;
 }
+.girl-img {
+    position: fixed;
+    bottom: 0;
+}
+// .catalogue-filter__open-button {
+//     width: 25px;  /* ширина в два раза меньше высоты, иначе получится полуовал */
+//     height: 50px;
+//     border: 2px solid #49cd4b;
+//     border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+//     background: #49cd4b;
+//     position: absolute;
+//     top: 40px;
+//     right: -27px;
+//     cursor: pointer;
+//     font-size: 20px;
+//     line-height: 44px;
+//     text-shadow: 0px 0px 13px #0f1310;
+//     overflow: hidden;
+//     color: rgb(227, 255, 227);
+//     display: none;
+//     transition: all .2s;
+//     &:hover {
+//         // top: 38px;
+//         // right: -26px;
+//         // width: 26px;
+//         // height: 52px;
+//         transform: scale(1.05); 
+//     }
+// }
+.catalogue-filter__close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: all .2s;
+    &:hover {
+        &::before, &::after{
+            height: 3px;
+        }
+    }
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        margin-top: -1px;
+        background: #000;
+    }
+    &::before {
+        transform: rotate(45deg);
+    }
+    &::after {
+        transform: rotate(-45deg);
+    }
+}
+/*-- media --*/ 
+@media (max-height: 800px) {
+    .girl-img {
+        width: 300px;
+    }
+}
+@media (max-height: 675px) {
+    .girl-img {
+        width: 220px;
+    }
+}
+@media (max-height: 580px) {
+    .girl-img {
+        display: none;
+    }
+}
+@media (max-width: 1367px) {
+    .girl-img {
+        width: 250px;
+    }
+} 
+@media (max-width: 1700px) {
+    .catalogue-wrapper {
+        width: 100%;
+    }
+    .catalogue__elements {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .girl-img {
+        display: none;
+    }
+    .catalogue-filter__list {
+        height: 100%;
+        
+    }
+    .catalogue__list {
+        height: 100%;
+        max-height: unset;
+    }
+    .catalogue-filter {
+        background: white;
+        height: 100%;
+        padding-bottom: 125px;
+    }
+}
+@media (max-width: 1023px) {
+    .header-logo__component {
+        display: none;
+    }
+    .header-minlogo__inner {
+        display: block;
+    }
+    .header__options {
+        padding-right: 0;
+    }
+   .catalogue-filter {
+        position: absolute;
+        margin-left: -20px;
+        transform: translateX(-100%);
+        border-right: 2px solid #34a136;
+        padding-right: 0;
+        transition: transform .5s;
+        &--show {
+            transform: translateX(0);
+            padding-left: 20px;
+        }
+    }
+    // .catalogue-filter__open-button {
+    //     display: block;
+    // }
+    .catalogue-filter__close-button {
+        display: inline-block;
+    }
+    .catalogue__breadcrumps {
+        padding: 20px 5px 5px 20px;
+    }
+    .catalogue__elements {
+        padding-bottom: 45px;
+    }
+}
+@media (max-width: 700px) {
+    .header-qrcode,
+    .header-menu {
+        margin-right: 15px;
+    }
+    .catalogue-wrapper {
+        padding: 0 10px;
+    }
+    .catalogue-filter {
+        width: 100%;
+    }  
+    .catalogue__breadcrumps {
+        padding: 15px 5px 5px 15px;
+    }
+    .catalogue-filter {
+        margin-left: -10px;
+        border-right: none;
+        &--show {
+            padding-left: 10px;
+        }
+    }
+    .header-wrapper {
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+    .header-search {
+        margin-left: 0;
+    }
+    .catalogue__elements {
+        padding-bottom: 40px;
+    }
+}
+@media (max-width: 600px) {
+    .header-search__input {
+        &:focus 
+        &:focus .header-search__form {
+            width: 100%;
+        }
+    }
+}
+@media (max-width: 550px) {
+    .breadcrumps__text  {
+        font-size: 14px;
+    }
+}
+@media (max-width: 475px) {
+    .breadcrumps__text  {
+        font-size: 12px;
+    }
+    .header-qrcode,
+    .header-menu {
+        margin-right: 10px;
+    }
+    .header-qrcode__image, .header-menu__button {
+        width: 30px;
+        height: 30px;
+    }
+    .header-minlogo__inner {
+        padding: 5px 0;
+    }
+    .header-minlogo__image {
+        width: 55px;
+        height: 35px;
+    }
+    .header-search {
+        margin: 0 auto;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        border-bottom: none;
+    }
+    .header-search__input {
+        font-size: 14px;
+        line-height: 16px;
+        padding: 5px 5px 5px 12px;
+        width: 90%;
+    }
+    .header-search__button-loupe {
+        left: 5px;
+        width: 18px;
+        height: 18px;
+        background-size: contain;
+    }
+    .catalogue__breadcrumps {
+        padding: 5px 5px 5px 0px;
+    }
+    .catalogue__elements {
+        padding-bottom: 30px;
+    }
+}
+
+
 </style>

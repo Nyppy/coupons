@@ -1,16 +1,22 @@
 <template>
   <div class="payments__coupon">
     <div class="coupon__size">
-      Скидка 25%
-      <span>за</span> 1$
+      Скидка {{getCurrentCoupon.price_sale}}
+      <span>за</span> {{getCurrentCoupon.price_service == 0 ? "Free" : getCurrentCoupon.price_service}}
     </div>
-    <div class="coupon-name">Суши Япона матрена</div>
+    <div class="coupon-name">{{getCurrentCoupon.name}}</div>
   </div>
 </template>
 
 <script>
-export default {
+import { mapGetters } from 'vuex'
 
+export default {
+    computed: {
+        ...mapGetters([
+            'getCurrentCoupon',
+        ])
+    }
 };
 </script>
 

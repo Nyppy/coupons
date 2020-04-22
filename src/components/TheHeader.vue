@@ -31,4 +31,12 @@
         width: 180px;
     }
 }
+@media (max-width:475px) {
+    .header {
+        padding: 5px 0;
+    }
+    .logo {
+        width: 120px;
+    }
+}
 </style>
