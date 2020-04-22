@@ -1,71 +1,67 @@
 <template>
-  <div class="start-page">
-    <div class="start-page__wrapper">
-      <div class="container">
-        <header>
-          <div class="Left_menu">
-            <div class="logo">
-              <img src="~@/assets/img/coupons_logo.svg" alt="#" />
-            </div>
-            <div class="sorting">
-              <p>Сортировка</p>
-              <form action>
-                <div class="form_info">
-                  <img src="~@/assets/img/badges with registration/language.png" alt />
-                  <select name="country" class="country">
-                    <option>Выберите язык</option>
-                    <option value="Россия">Россия</option>
-                    <option value="Украина">Украина</option>
-                    <option value="Беларусь">Беларусь</option>
-                  </select>
-                </div>
-                <div class="form_info">
-                  <img src="~@/assets/img/badges with registration/world.png" alt />
-                  <select name="country" class="country">
-                    <option>Выберите страну</option>
-                    <option value="Россия">Россия</option>
-                    <option value="Украина">Украина</option>
-                    <option value="Беларусь">Беларусь</option>
-                  </select>
-                </div>
-                <div class="form_info">
-                  <img src="~@/assets/img/badges with registration/urban.png" alt />
-                  <select name="country" class="country">
-                    <option>Выберите город</option>
-                    <option value="Россия">Россия</option>
-                    <option value="Украина">Украина</option>
-                    <option value="Беларусь">Беларусь</option>
-                  </select>
-                </div>
-              </form>
-              <button class="Button">Посмотреть купоны</button>
+  <div>
+
+    <div class="container">
+      <header>
+        <div class="Left_menu">
+          <div class="logo">
+            <img src="~@/assets/img/coupons_logo.svg" alt="#" />
+          </div>
+          <div class="sorting">
+            <p>{{ $t('sorted') }}</p>
+            <form action>
+              <div class="form_info">
+                <img src="~@/assets/img/badges with registration/language.png" alt />
+                <select v-model="$i18n.locale" name="country" class="country">
+                    <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ $t(lang) }}</option>
+                </select>
+              </div>
+              <div class="form_info">
+                <img src="~@/assets/img/badges with registration/world.png" alt />
+                <select name="country" class="country">
+                  <option>{{ $t('select_a_country') }}</option>
+                  <option value="Россия">Россия</option>
+                  <option value="Украина">Украина</option>
+                  <option value="Беларусь">Беларусь</option>
+                </select>
+              </div>
+              <div class="form_info">
+                <img src="~@/assets/img/badges with registration/urban.png" alt />
+                <select name="country" class="country">
+                  <option>{{ $t('select_a_country') }}</option>
+                  <option value="Россия">Россия</option>
+                  <option value="Украина">Украина</option>
+                  <option value="Беларусь">Беларусь</option>
+                </select>
+              </div>
+            </form>
+            <button class="Button">{{ $t('view_coupons') }}</button>
+          </div>
+        </div>
+        <div class="right_menu">
+          <div class="slid1">
+            <img src="~@/assets/img/img-footer6.png" alt />
+            <div class="text">
+              <p>{{ $t('text_the_best.text1') }}
+              <br />{{ $t('text_the_best.text2') }}.<p/>
             </div>
           </div>
-          <div class="right_menu">
-            <div class="slid1">
-              <img src="~@/assets/img/img-footer6.png" alt />
-              <div class="text">
-                <p>Лучшие скидки во время
-                <br />вашего путешествия.<p/>
-              </div>
+          <!-- <div class="slid2">
+            <img src="~@/assets/img/img-footer4.png" alt />
+            <div class="text">
+              <p>Экстримальные ощущения
+              <br />или тихий отдых.</p>
             </div>
-            <!-- <div class="slid2">
-              <img src="~@/assets/img/img-footer4.png" alt />
-              <div class="text">
-                <p>Экстримальные ощущения
-                <br />или тихий отдых.</p>
-              </div>
+          </div>
+          <div class="slid3">
+            <img src="~@/assets/img/img-footer5.png" alt />
+            <div class="text">
+              <p>Получите максимум эмоций
+              <br />от отдыха с нашими купонами.</p>
             </div>
-            <div class="slid3">
-              <img src="~@/assets/img/img-footer5.png" alt />
-              <div class="text">
-                <p>Получите максимум эмоций
-                <br />от отдыха с нашими купонами.</p>
-              </div>
-            </div> -->
-          </div> 
-        </header>
-      </div>
+          </div> -->
+        </div> 
+      </header>
     </div>
     <div class="footer__wrapper">
         <div class="container">
